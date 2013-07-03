@@ -48,6 +48,9 @@ angular.module('myBoardApp')
 				        break;
 				      case 'radar':
 				        myNewChart = new Chart(ctx).Radar(data, defaults);
+				        break;
+				      case 'polar':
+				        myNewChart = new Chart(ctx).PolarArea(data, defaults);
 				        break;        
 				      default:
 				        myNewChart = new Chart(ctx).Line(data, defaults);
