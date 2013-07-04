@@ -19,6 +19,22 @@ angular.module('myBoardApp', [])
         templateUrl: 'views/network.html',
         controller: 'NetworkCtrl'
       })
+      .when('/career', {
+        templateUrl: 'views/career.html',
+        controller: 'CareerCtrl'
+      })
+      .when('/health', {
+        templateUrl: 'views/health.html',
+        controller: 'HealthCtrl'
+      })
+      .when('/about', {
+        templateUrl: 'views/about.html',
+        controller: 'AboutCtrl'
+      })
+      .when('/callback', {
+        templateUrl: 'views/callback.html',
+        controller: 'CallbackCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

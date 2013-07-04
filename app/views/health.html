@@ -1,0 +1,54 @@
+<ol class="breadcrumb">
+    <li>
+      <a href="#">Home</a>
+      <span class="divider">/</span> 
+    </li>
+
+    <li class="active">My Life</li>
+  </ol>
+
+  <div class="row-fluid main-features">
+    <div class="span3">
+      <ul class="nav nav-list well">
+        <li class="nav-header">Daily Fitness</li>
+        <li>Target: 150 min.</li>
+        <li>Actual: 30 min.</li>
+        <li class="nav-header">Daily Calories</li>
+        <li>Allowed:
+          <span class="label label-success">3000</span> 
+        </li>
+        <li>Used:
+          <span class="label label-warning">683</span> 
+        </li>
+        <li>Remaining:
+          <span class="label label-info">2317</span> 
+        </li>
+        <li class="nav-header">Daily Nuturition</li>
+        <li>Grains: 2.5 oz. / 10 oz.</li>
+        <li>Vegetables: .5 / 4 cups</li>
+        <li>Fruits: 0 / 2.5 cups</li>
+        <li>Dairy: .5 / 3 cups</li>
+        <li>Proteins: 3 oz. / 7 oz.</li>
+      </ul>
+    </div>
+    <div class="span9">
+		<widget title="My Weekly Calorie Intake">
+			<chartjs id="weeklyChart" data="{{weeklyData}}" type="line" width="650">weeklyData</chartjs>
+		</widget>
+    </div>
+  </div>
+  <div class="row-fluid sub-features">
+    <div class="span6">
+      <section class="widget">
+        <header class="widget-header">
+          <h3>My Fitness</h3>
+        </header>
+        <section class="widget-content">Activity: Running | Duration: 15 min. | Calories Burned: 216</section>
+      </section>
+    </div>
+    <div class="span6">
+		<widget title="My Nutrition">
+			<chartjs id="nutritionChart" type="bar" data="{{foodgroupsData}}" width="400" height="200"></chartjs>
+		</widget>
+    </div>
+  </div>

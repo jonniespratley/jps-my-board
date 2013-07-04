@@ -1,6 +1,6 @@
 
-<div class="container">
-  <a class="btn btn-large btn-primary btn-block visible-phone" href="#"><span class="btn-label">Sign Up Today!</span></a>
+
+
   <ol class="breadcrumb">
     <li>
       <a href="#">Home</a>
@@ -8,7 +8,7 @@
     </li>
     <li class="active">My Network</li>
   </ol>
-  <div class="row main-features">
+  <div class="row-fluid main-features">
     <div class="span2">
       <legend>Networks</legend>
       <ul class="nav nav-list well">
@@ -21,28 +21,28 @@
         <li>
           <a href="#"><i class="icon-instagram"></i> Instagram</a> 
         </li>
-		<li class="nav-header">
-			Not-Connected
-		</li>
 		<li>
           <a href="#"><i class="icon-facebook-sign"></i> Facebook</a> 
         </li>
+		<li class="nav-header">
+			Not-Connected
+		</li>
         <li>
           <a href="#"><i class="icon-foursquare"></i> Foursquare</a> 
         </li>
       </ul>
     </div>
     <div class="span10">
-      <legend>Social Activity</legend>
+      <legend>Social Analysis</legend>
       <div class="well well-">
 		<chartjs id="activityChart" data='{{activityChartData}}' type="bar" width="750" height="185">My Activity</chartjs>
         <img src="http://placehold.it/750x185&amp;text=Line Chart" class="hidden"> 
       </div>
     </div>
   </div>
-  <div class="row sub-features">
+  <div class="row-fluid sub-features">
     <div class="span6">
-      <legend>My Friends</legend>
+      <legend>Friends</legend>
       <div class="well center">
         <img src="http://placehold.it/200x200&amp;text=Doughnut Chart" class="hidden">
 		<chartjs id="friendsChart" data='{{friendsChartData}}' type="polar" width="200" height="200">My Friends</chartjs>
@@ -54,19 +54,11 @@
       </div>
     </div>
     <div class="span6">
-      <legend>My Trends</legend>
+      <legend>Trends</legend>
       <div class="well well-">
         <img src="http://placehold.it/200x200&amp;text=Radar Chart" class="hidden">
-        <div class="pull-left chart-legend">
-          <ul>
-            <li>Facebook : 45 / total = %</li>
-            <li>Twitter: 53 / total = %</li>
-            <li>Instagram: 492 / total = %</li>
-            <li>Foursquare: 120 / total = %</li>
-          </ul>
-        </div>
-		<chartjs id="trendsChart" data='{{trendsChartData}}' type="bar" width="200" height="200">My Trends</chartjs>
+		<chartjs id="trendsChart" data='{{trendsChartData}}' type="column" width="400" height="200">My Trends</chartjs>
+		
       </div>
     </div>
   </div>
-</div>

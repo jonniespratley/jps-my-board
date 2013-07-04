@@ -43,19 +43,29 @@ angular.module('myBoardApp').controller('NetworkCtrl', function ($scope) {
 	$scope.trendsChartData = {
 		labels: [],
 		datasets : [
+		//Facebook
 			{
-				fillColor : "rgba(220,220,220,0.5)",
-				strokeColor : "rgba(220,220,220,1)",
+				fillColor : "rgba(120,138,179,0.5)",
+				strokeColor : "rgba(120,138,179,.8)",
 				pointColor : "rgba(220,220,220,1)",
 				pointStrokeColor : "#fff",
 				data : [65,59,90,81,56,55,40]
 			},
+			//Insta
 			{
-				fillColor : "rgba(151,187,205,0.5)",
-				strokeColor : "rgba(151,187,205,1)",
+				fillColor : "rgba(216,201,188,0.5)",
+				strokeColor : "rgba(247,26,69,.8)",
 				pointColor : "rgba(151,187,205,1)",
 				pointStrokeColor : "#fff",
 				data : [28,48,40,19,96,27,100]
+			},
+			//twitter
+			{
+				fillColor : "rgba(73,200,245,0.5)",
+				strokeColor : "rgba(73,200,245,.8)",
+				pointColor : "rgba(151,187,205,1)",
+				pointStrokeColor : "#fff",
+				data : [38,68,40,49,36,57,200]
 			}
 		]
 	};
@@ -91,7 +101,7 @@ angular.module('myBoardApp').controller('NetworkCtrl', function ($scope) {
 			},	
 			//Instagram		
 			{
-				fillColor : "rgba(216,201,188,0.5)",
+				fillColor : "rgba(216,201,188,0.3)",
 				strokeColor : "rgba(247,26,69,1)",
 				data : [34,75,51,27]
 			},
