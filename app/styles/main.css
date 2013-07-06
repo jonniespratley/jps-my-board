@@ -1,6 +1,6 @@
 /* Will be compiled down to a single stylesheet with your sass files */
 /* CSS declarations go here */
-@import url('//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css');
+
 @import url('//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css');
 
 
@@ -14,9 +14,50 @@
   margin-top: 5px !important;
 }
 
+.table-small{
+	font-size: 11px;
+}
+.chart-table{
+	margin-right: 5px;
+}
 body, html{
 	padding-top:25px;
 }
+
+footer{
+	margin-top:25px;
+	margin-bottom: 35px;
+	font-size:11px;
+	text-align:center;
+}
+
+.label-grains{
+  background-color: #CB662E;
+}
+.label-vegetables{
+  background-color: #54B631;
+}
+.label-fruits{
+  background-color: #E33B54;
+}
+.label-dairy{
+  background-color: #4D90D1;
+}
+.label-protein{
+  background-color: #7D62A3;
+}
+
+
+.label-remaining{
+  background-color: #3a87ad;
+}
+.label-used{
+  background-color: #E33B54;
+}
+.label-allowed{
+  background-color: #999999;
+}
+
 
 .center{
 	text-align:center;

@@ -11,7 +11,7 @@
   <div class="row-fluid main-features">
     <div class="span2">
       <legend>Networks</legend>
-      <ul class="nav nav-list well">
+      <ul class="nav nav-list">
 		<li class="nav-header">
 			Connected
 		</li>
@@ -34,7 +34,7 @@
     </div>
     <div class="span10">
       <legend>Social Analysis</legend>
-      <div class="well well-">
+      <div class="box">
 		<chartjs id="activityChart" data='{{activityChartData}}' type="bar" width="750" height="185">My Activity</chartjs>
         <img src="http://placehold.it/750x185&amp;text=Line Chart" class="hidden"> 
       </div>
@@ -43,7 +43,7 @@
   <div class="row-fluid sub-features">
     <div class="span6">
       <legend>Friends</legend>
-      <div class="well center">
+      <div class="center box">
         <img src="http://placehold.it/200x200&amp;text=Doughnut Chart" class="hidden">
 		<chartjs id="friendsChart" data='{{friendsChartData}}' type="polar" width="200" height="200">My Friends</chartjs>
 		<ul class="inline">
@@ -55,7 +55,7 @@
     </div>
     <div class="span6">
       <legend>Trends</legend>
-      <div class="well well-">
+      <div class="box center">
         <img src="http://placehold.it/200x200&amp;text=Radar Chart" class="hidden">
 		<chartjs id="trendsChart" data='{{trendsChartData}}' type="column" width="400" height="200">My Trends</chartjs>
 		

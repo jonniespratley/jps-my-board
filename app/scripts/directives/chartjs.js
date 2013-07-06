@@ -20,6 +20,7 @@ angular.module('myBoardApp')
 						options = attrs.options, 
 	          type = attrs.type,
 	          data = angular.toJson(attrs.data);
+
 				 // watch the expression, and update the UI on change.
 					scope.$watch(attrs.data, function(value) {
 						data = angular.fromJson(attrs.data);
