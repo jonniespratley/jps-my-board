@@ -1,5 +1,5 @@
 'use strict';
-angular.module('myBoardApp').controller('NetworkCtrl', function ($scope) {
+angular.module('myBoardApp').controller('NetworkCtrl', function ($scope, $rootScope) {
 /* ======================[ @TODO: 
 <li>Facebook: 137 photos | 734 friends | 4 followers</li>
 <li>Twitter: 1,309 TWEETS | 90 FOLLOWING | 101 FOLLOWERS</li>
@@ -120,6 +120,7 @@ angular.module('myBoardApp').controller('NetworkCtrl', function ($scope) {
 
 
 	$scope.init = function(){
+		$rootScope.App.init();
 		$scope.buildFriendsChart();
 	}
 	

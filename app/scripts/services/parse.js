@@ -1,11 +1,18 @@
 'use strict';
 //https://EWJAR5Zkq2VI2XHfPe3vZnc1LYG5eDcbYt0dHwI5:javascript-key=stymT2WbAK64RXXwhigTHg1HwxuhFAyOWBGXS2LD@api.parse.com/1/classes/GameScore/
 angular.module('myBoardApp').factory('parse', ['$q', function ($q){
-	var Service = function(apikey, apisecret, model, successCb, errorCb){
+	var Service = function(apikey, apisecret, model, params, successCb, errorCb){
   	Parse.initialize(apikey, apisecret);
 		var	query = new Parse.Query(model),
 				delay = $q.defer(),
 				data = null;
+
+				if(params){
+					//query.greaterThan(params.name, params.value);		
+				}
+				
+			// Retrieve the most recent ones
+			query.descending("createdAt");
 			query.find({
 				success: function(results) {
 					data = results.map(function(obj){
@@ -13,6 +20,8 @@ angular.module('myBoardApp').factory('parse', ['$q', function ($q){
 							id: obj.id,
 							title: obj.get('title'),
 							body: obj.get('body'),
+							category: obj.get('category'),
+							amount: obj.get('amount'),
 							duration: obj.get('duration'),
 							day: obj.get('day'),
 							meal: obj.get('meal'),

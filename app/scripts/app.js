@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myBoardApp', [])
+angular.module('myBoardApp', ['ngResource', 'ui', '$strap.directives'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
@@ -34,6 +34,14 @@ angular.module('myBoardApp', [])
       .when('/callback', {
         templateUrl: 'views/callback.html',
         controller: 'CallbackCtrl'
+      })
+      .when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl'
+      })
+      .when('/signup', {
+        templateUrl: 'views/signup.html',
+        controller: 'SignupCtrl'
       })
       .otherwise({
         redirectTo: '/'

@@ -1,7 +1,6 @@
 'use strict';
 
-angular.module('myBoardApp')
-  .controller('MainCtrl', function ($scope) {
+angular.module('myBoardApp').controller('MainCtrl', function ($scope, $rootScope, ParseService, App) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -22,4 +21,16 @@ angular.module('myBoardApp')
 				color : "#69D2E7"
 			}			
 		];
-  });
+		
+		
+		
+		$scope.user = {
+			username: '',
+			password: '',
+			email: null
+		};
+		
+		
+		
+		window.App = $rootScope.App = App.init();
+});

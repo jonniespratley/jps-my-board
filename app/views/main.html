@@ -1,10 +1,8 @@
 
   <div class="hero-unit hidden-phone">
-    <h1>Welcome to My-board!</h1>
-    <p>View all things that you care about on your own personal customizable dashboard.
-      <br> 
-    </p>
-    <a class="btn btn-large btn-inverse" href="#"><span class="btn-label">Sign Up Today!</span></a> 
+    <h1>Welcome to My-Board!</h1>
+    <p>View all things that you care about on your own personal customizable dashboard. <a href="#/about">Read More</a></p>
+	<a class="btn btn-large btn-primary" data-toggle="modal" href="#signupModal" ng-hide="App.currentUser">Sign Up!</a>
   </div>
 
   <div class="row main-features">
@@ -33,3 +31,7 @@
       </div>
     </div>
   </div>
+
+	<!-- @TODO: [Login / Signup] -->
+	<div ng-include src="'views/login.html'"></div>
+	<div ng-include src="'views/signup.html'"></div>

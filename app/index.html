@@ -27,6 +27,7 @@
 	
     <!-- build:css styles/main.css -->
 	<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+	<link data-require="bootstrap-datepicker@1.0.0" data-semver="1.0.0" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.0.0/css/datepicker.css" />
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
@@ -40,30 +41,57 @@
       <script src="components/json3/lib/json3.min.js"></script>
     <![endif]-->
 
-	<div class="navbar navbar-fixed-top navbar-inverse">
+
+	<div class="navbar navbar-fixed-top">
 	  <div class="navbar-inner">
-		<div class="container">
-		  <a class="brand" href="#"><i class="icon-dashboard icon-1x"></i>	My-board</a>
-		  <div class="navbar-content">
-			<ul class="nav pull-right">
+	    <div class="container-fluid">
 
-			<li>
-				<a href="#/career">My Career</a>
-			</li>
-			<li>
-				<a href="#/health">My Health</a>
-			</li>
+	      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+	      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </a>
 
-			<li>
-				<a href="#/network">My Network</a>
-			</li>
-			</ul>
-		  </div>
-		</div>
+	      <!-- Be sure to leave the brand out there if you want it shown -->
+		  <a class="brand" href="#"><img src="https://dl.dropboxusercontent.com/u/26906414/my-board/img/icon-32.png">	My-Board</a>
+
+	      <!-- Everything you want hidden at 940px or less, place within here -->
+	      <div class="nav-collapse collapse">
+				<ul class="nav pull-right" ng-hide="App.currentUser">
+					<li>
+						<a href="#/about">About</a>
+					</li>
+					<li>
+						<a data-toggle="modal" href="#loginModal">Login</a>
+					</li>
+				</ul>
+	        <!-- .nav, .navbar-search, .navbar-form, etc -->
+				<ul class="nav pull-right" ng-show="App.currentUser">	
+					<li>
+						<a href="#/career">My Career</a>
+					</li>
+					<li>
+						<a href="#/health">My Health</a>
+					</li>
+					<li>
+						<a href="#/network">My Network</a>
+					</li>
+					<li>
+						<a href="#" ng-click="App.logout()">Logout</a>
+					</li>
+				</ul>
+	      </div>
+	    </div>
 	  </div>
 	</div>
-	<div class="container" ng-view></div>
-    
+	<div class="container">
+		<div class="row">
+			<div class="span12" ng-view>
+			</div>
+		</div>
+	</div>
+	
 	<footer>
 		<p>Copywrite 2013 &copy; Jonnie Spratley</p>
 	</footer>
@@ -73,6 +101,9 @@
     <script src="components/angular-resource/angular-resource.js"></script>
     <script src="components/angular-cookies/angular-cookies.js"></script>
     <script src="components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="components/angular-strap/dist/angular-strap.min.js"></script>
+    <script src="components/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script src="components/angular-ui/build/angular-ui.min.js"></script>
 	<script src="https://dl.dropboxusercontent.com/u/26906414/cdn/js/Chart.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
 	<script src="http://www.parsecdn.com/js/parse-1.2.8.min.js"></script>
@@ -92,6 +123,11 @@
     <script src="scripts/services/NetworkService.js"></script>
     <script src="scripts/services/CareerService.js"></script>
     <script src="scripts/directives/formitem.js"></script>
+    <script src="scripts/controllers/login.js"></script>
+    <script src="scripts/controllers/signup.js"></script>
+    <script src="scripts/services/ParseService.js"></script>
+    <script src="scripts/directives/tabs.js"></script>
+    <script src="scripts/services/App.js"></script>
     <!-- endbuild -->
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

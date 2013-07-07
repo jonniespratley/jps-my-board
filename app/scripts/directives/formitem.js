@@ -8,8 +8,7 @@
  *
  */
 
-angular.module('myBoardApp')
-  .directive('formitem', function () {
+angular.module('myBoardApp').directive('formitem', function () {
     return {
 			restrict : 'E',
 			replace : true,
@@ -37,7 +36,7 @@ angular.module('myBoardApp')
 			link : function postLink(scope, iElement, iAttrs) {
 				//console.log('postLink', scope, iElement, iAttrs);
 			},
-			template : '<div class="control-group">' + '<div class="control-label"><label for="{{name}}">{{title}} </label></div>' + '<div class="controls" ng-transclude>' + '</div>' + '</div>'
+			template : '<div class="control-group">' + '<div class="control-label"><label for="{{name}}" id="{{title | lowercase}}">{{title}} </label></div>' + '<div class="controls" ng-transclude>' + '</div>' + '</div>'
 		};
 		
   });

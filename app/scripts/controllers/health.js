@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myBoardApp')
-  .controller('HealthCtrl', function ($scope, parse) {
+  .controller('HealthCtrl', function ($scope, $rootScope, parse, ParseService, App) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -17,9 +17,9 @@ angular.module('myBoardApp')
 			fruits: '#E33B54',
 			dairy: '#4D90D1',
 			protein: '#7D62A3',
-			remaining: '#3a87ad',
+			allowed: '#468847',
 			used: '#f89406',
-			allowed: '#3a87ad'
+			remaining: '#3a87ad'
 		};
 		
 		$scope.weeklyData = {
@@ -51,15 +51,15 @@ angular.module('myBoardApp')
 			$scope.dailyCalorieLimitsData = [
 				{ 
 					value: $scope.dailyCaloriesLimit, 
-					color: $scope.colors.allowed
+					color: '#468847'
 				},
 				{ 
 					value : $scope.dailyCaloriesUsed, 
-					color : $scope.colors.used
+					color :'#f89406'
 				},
 				{ 
 					value : $scope.dailyCaloriesRemaining, 
-					color : $scope.colors.remainining
+					color : '#3a87ad'
 				}			
 			];
 			
@@ -115,15 +115,15 @@ angular.module('myBoardApp')
 		};
 		
 		$scope.dailyFoodgroupsData = {
-			labels : ['Grains', 'Vegetables', 'Fruits', 'Dairy', 'Proteins', 'Oils'],
+			labels : ['Monday'],
 			datasets : [
-				//Monday
+				//Grains
 				{
 					fillColor : "rgba(212,109,40,0.5)",
 					strokeColor : "rgba(212,109,40,1)",
 					pointColor : "rgba(220,220,220,1)",
 					pointStrokeColor : "#fff",
-					data : [8, 23, 17, 13, 6, 2]
+					data : [8]
 				},
 				
 				//Vegies
@@ -132,24 +132,25 @@ angular.module('myBoardApp')
 					strokeColor : "rgba(99,191,64,1)",
 					pointColor : "rgba(151,187,205,1)",
 					pointStrokeColor : "#fff",
-					data : [0, 1, 2, 3, 1, 5]
+					data : [12]
 				},
-				//Fruites
+				
+				//Fruits
 				{
 					fillColor : "rgba(235,84,103,0.5)",
 					strokeColor : "rgba(235,84,103,1)",
 					pointColor : "rgba(151,187,205,1)",
 					pointStrokeColor : "#fff",
-					data : [0, 1, 2, 3, 1, 5]
+					data : [23]
 				},
 				
 				//Dairy
 				{
-					fillColor : "rgba(99,191,64,0.5)",
-					strokeColor : "rgba(99,191,64,1)",
+					fillColor : "rgba(94,163,218,0.5)",
+					strokeColor : "rgba(94,163,218,1)",
 					pointColor : "rgba(151,187,205,1)",
 					pointStrokeColor : "#fff",
-					data : [0, 1, 2, 3, 1, 5]
+					data : [7]
 				},
 				
 				//Proteins
@@ -158,16 +159,7 @@ angular.module('myBoardApp')
 					strokeColor : "rgba(104,82,146, 1)",
 					pointColor : "rgba(151,187,205,1)",
 					pointStrokeColor : "#fff",
-					data : [0, 1, 2, 3, 1, 5]
-				},
-				
-				//Oils
-				{
-					fillColor : "rgba(238,176,34, 0.5)",
-					strokeColor : "rgba(238,176,34, 1)",
-					pointColor : "rgba(151,187,205,1)",
-					pointStrokeColor : "#fff",
-					data : [0, 1, 2, 3, 1, 5]
+					data : [8]
 				}
 			]
 		}
@@ -176,6 +168,7 @@ angular.module('myBoardApp')
     $scope.activity = {
       title: 'Light jog',
       body: 'Ran a light jog around the block.',
+			date: new Date().toUTCString(),
       duration: 15,
       calories: 250,
       intensity: 'Low',
@@ -186,6 +179,7 @@ angular.module('myBoardApp')
 		$scope.food = {
 			title: 'Cheeseburger',
 			day: null,
+			date: new Date().toUTCString(),
 			meal: 'Lunch',
 			calories: 250,
 			foodgroups: {
@@ -198,6 +192,11 @@ angular.module('myBoardApp')
 			user_id: 1
 		};
 
+		$scope.currentDay = 'Jul 1, 2013';
+		var params = {
+			name: 'date',
+			value: $scope.currentDay
+		};
 
 			Parse.initialize("EWJAR5Zkq2VI2XHfPe3vZnc1LYG5eDcbYt0dHwI5", "stymT2WbAK64RXXwhigTHg1HwxuhFAyOWBGXS2LD");
 			
@@ -214,33 +213,37 @@ angular.module('myBoardApp')
 							dailyCaloriesTotal: 0,
 							dailyFoodgroupData: $scope.dailyFoodgroupsData
 						},
+						//Init the application
 						init: function(){
+							App.init();
 							this.getActivities();
 							this.getFoods();
 						},
+						
 						//Get activities
 		        getActivities: function(){
-		          new parse('EWJAR5Zkq2VI2XHfPe3vZnc1LYG5eDcbYt0dHwI5', 'stymT2WbAK64RXXwhigTHg1HwxuhFAyOWBGXS2LD', 'Activity', function(data){
+
+		          new parse('EWJAR5Zkq2VI2XHfPe3vZnc1LYG5eDcbYt0dHwI5', 'stymT2WbAK64RXXwhigTHg1HwxuhFAyOWBGXS2LD', 'Activity', params, function(data){
 								$scope.$apply(function(){
 									$scope.Health.data.activities = data;
 								});
 		            console.log(data);
 							});
 		        },
+		
 						//Add activity
 		        addActivity: function(obj){
-		          var ActivityObject = Parse.Object.extend("Activity");
-		          var testObject = new ActivityObject();
-		              testObject.save(obj, {
-		              success: function(object) {
-		                angular.element('#addActivityModal').modal('toggle');
-		                $scope.Health.getActivities();
-		              }
-		          });
+							obj.date = new Date().toUTCString();
+							ParseService.add('Activity', obj, function(obj){
+								angular.element('#addActivityModal').modal('toggle');
+                $scope.Health.getActivities();
+							});
 		        },
+		
 						//Get foods
 						getFoods: function(){
-		          new parse('EWJAR5Zkq2VI2XHfPe3vZnc1LYG5eDcbYt0dHwI5', 'stymT2WbAK64RXXwhigTHg1HwxuhFAyOWBGXS2LD', 'Food', function(data){
+						
+		          new parse('EWJAR5Zkq2VI2XHfPe3vZnc1LYG5eDcbYt0dHwI5', 'stymT2WbAK64RXXwhigTHg1HwxuhFAyOWBGXS2LD', 'Food', params, function(data){
 								$scope.$apply(function(){
 									$scope.Health.data.foods = data;
 								});
@@ -248,6 +251,7 @@ angular.module('myBoardApp')
 		            console.log(data);
 							});
 		        },
+		
 		     		//Add food item
 						addFood: function(obj){
 		          var ParseObject = Parse.Object.extend('Food');
@@ -259,8 +263,20 @@ angular.module('myBoardApp')
 		              }
 		          });
 		        },
+		
 						//Build the ui based on the user profile entries and the duration of the activities and the calories of the foods,
 						buildUI: function(){
+							
+						},
+						
+						//Build the activity health chart
+						buildActivityChart: function(){
+							//activity.day = labels
+							//activity.duration = values
+							var data = {
+								labels: ['Sun', 'Mon', 'Tue', 'Wed'],
+								datasets: []
+							};
 						}
 					};
 
