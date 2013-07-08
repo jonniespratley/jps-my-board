@@ -1,37 +1,51 @@
-
-  <div class="hero-unit hidden-phone">
-    <h1>Welcome to My-Board!</h1>
-    <p>View all things that you care about on your own personal customizable dashboard. <a href="#/about">Read More</a></p>
-	<a class="btn btn-large btn-primary" data-toggle="modal" href="#signupModal" ng-hide="App.currentUser">Sign Up!</a>
-  </div>
-
-  <div class="row main-features">
-    <div class="span4">
-      <div class="well">
-        <h3>Your Career</h3>
-        <p>Are you working enough to support your habits? View your workload and
-          cash flow to help balance your life.</p>
-        <a class="btn btn-inverse" href="#/career"><span class="btn-label">View My Career</span></a> 
-      </div>
-    </div>
-    <div class="span4">
-      <div class="well">
-        <h3>Your Health</h3>
-        <p>Are you living a healthy life? Well find out exactly how active and healthy
-          you are, it is your life.</p>
-        <a class="btn btn-inverse" href="#/health"><span class="btn-label">View My Health</span></a> 
-      </div>
-    </div>
-    <div class="span4">
-      <div class="well">
-        <h3>Your Network</h3>
-        <p>View your social network stats to see how invovled you really are in your
-          social networking world.</p>
-        <a class="btn btn-inverse" href="#/network"><span class="btn-label">View My Network</span></a> 
-      </div>
-    </div>
-  </div>
-
-	<!-- @TODO: [Login / Signup] -->
-	<div ng-include src="'views/login.html'"></div>
-	<div ng-include src="'views/signup.html'"></div>
+<div class="hero-unit hidden-phone">
+	<div class="row-fluid">
+		<div class="span7 center">
+			<h1>Welcome!</h1>
+	<p>
+		View all things that you care about on your own personal customizable dashboard. <a href="#/about">Read More</a>
+		<br/>
+		<a class="btn btn-large btn-primary" data-toggle="modal" href="#signupModal" ng-hide="App.currentUser">Sign Up!</a>
+	</p>
+		</div>
+		<div class="span5 right">
+			<img src="https://dl.dropboxusercontent.com/u/26906414/my-board/img/logo-lg.png"/>
+		</div>
+	</div>
+	
+</div>
+<div class="row main-features">
+	<div class="span4">
+		<div class="well">
+			<h3>Your Career</h3>
+			<p>
+				Are you working enough to support your habits? View your workload and
+				cash flow to help balance your life.
+			</p>
+			<a class="btn btn-inverse" href="#/career"><span class="btn-label">View My Career</span></a>
+		</div>
+	</div>
+	<div class="span4">
+		<div class="well">
+			<h3>Your Health</h3>
+			<p>
+				Are you living a healthy life? Well find out exactly how active and healthy
+				you are, it is your life.
+			</p>
+			<a class="btn btn-inverse" href="#/health"><span class="btn-label">View My Health</span></a>
+		</div>
+	</div>
+	<div class="span4">
+		<div class="well">
+			<h3>Your Network</h3>
+			<p>
+				View your social network stats to see how invovled you really are in your
+				social networking world.
+			</p>
+			<a class="btn btn-inverse" href="#/network"><span class="btn-label">View My Network</span></a>
+		</div>
+	</div>
+</div>
+<!-- @TODO: [Login / Signup] -->
+<div ng-include src="'views/login.html'"></div>
+<div ng-include src="'views/signup.html'"></div>

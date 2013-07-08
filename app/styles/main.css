@@ -4,7 +4,8 @@
 /* CSS declarations go here */
 
 @import url('//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css');
-
+@import url('//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css');
+@import url('/components/bootstrap-datepicker/css/datepicker.css');
 /* @group Global */
 
 

@@ -1,141 +1,133 @@
-<!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!doctype html> <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>My-Board</title>
-    <meta name="description" content="Simple dashboard displaying lifes content.">
-    <meta name="viewport" content="width=device-width">
-	<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
-	<meta name="fragment" content="#" />
-	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-	<meta name="apple-mobile-web-app-capable" content="yes" />
-	<meta name="apple-mobile-web-app-title" content="My-Board"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	<meta name="apple-itunes-app" content="app-id=APPID"/>
-	
-	<link rel="shortcut icon" href="/ico/favicon.ico"/>
-	<link rel="apple-touch-icon" href="/ico/apple-touch-icon-57-precomposed.png" />
-	<link rel="apple-touch-icon" sizes="72x72" href="/ico/apple-touch-icon-72-precomposed.png" />
-	<link rel="apple-touch-icon" sizes="114x114" href="/ico/apple-touch-icon-114-precomposed.png" />
-	<link rel="apple-touch-startup-image" href="/ico/splash.png"/>
-	<link rel="apple-touch-startup-image" media="(device-height: 568px)" href="/ico/splash.png"/>
-	<link rel="apple-touch-startup-image" sizes="640x920" media="(device-height: 480px)" href="/ico/splash.png" />
-	
-    <!-- build:css styles/main.css -->
-	<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-	<link data-require="bootstrap-datepicker@1.0.0" data-semver="1.0.0" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.0.0/css/datepicker.css" />
-    <link rel="stylesheet" href="styles/main.css">
-    <!-- endbuild -->
-  </head>
-  <body ng-app="myBoardApp">
-    <!--[if lt IE 7]>
-      <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
-    <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+	<!--<![endif]-->
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>My-Board</title>
+		<meta name="description" content="Simple dashboard displaying lifes content.">
+		<meta name="viewport" content="width=device-width">
+		<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
+		<meta name="fragment" content="#" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-title" content="My-Board"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta name="apple-itunes-app" content="app-id=APPID"/>
+		<link rel="shortcut icon" href="/ico/favicon.ico"/>
+		<link rel="apple-touch-icon" href="/ico/apple-touch-icon-57-precomposed.png" />
+		<link rel="apple-touch-icon" sizes="72x72" href="/ico/apple-touch-icon-72-precomposed.png" />
+		<link rel="apple-touch-icon" sizes="114x114" href="/ico/apple-touch-icon-114-precomposed.png" />
+		<link rel="apple-touch-startup-image" href="/ico/splash.png"/>
+		<link rel="apple-touch-startup-image" media="(device-height: 568px)" href="/ico/splash.png"/>
+		<link rel="apple-touch-startup-image" sizes="640x920" media="(device-height: 480px)" href="/ico/splash.png" />
+		<!-- build:css styles/main.css -->
+		<link rel="stylesheet" href="styles/main.css">
+		<!-- endbuild -->
+	</head>
+	<body ng-app="myBoardApp">
+		<!--[if lt IE 7]>
+		<p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+		<![endif]-->
+		<!--[if lt IE 9]>
+		<script src="components/es5-shim/es5-shim.js"></script>
+		<script src="components/json3/lib/json3.min.js"></script>
+		<![endif]-->
+		<div class="navbar navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container-fluid">
+					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
+					<a class="brand" href="/">
+					<img src="https://dl.dropboxusercontent.com/u/26906414/my-board/img/icon-32.png" alt="My-Board" class="brand-img hidden-phone"/>
+					<span class="brand-txt">My-Board</span>
+					</a>
+					<div class="nav-collapse collapse">
+						<ul class="nav hidden-phone" ng-hide="App.currentUser">
+							<li>
+								<a href="/">Home</a>
+							</li>
+							<li>
+								<a href="#/about"> About</a>
+							</li>
+						</ul>
 
-    <!--[if lt IE 9]>
-      <script src="components/es5-shim/es5-shim.js"></script>
-      <script src="components/json3/lib/json3.min.js"></script>
-    <![endif]-->
-
-
-	<div class="navbar navbar-fixed-top">
-	  <div class="navbar-inner">
-	    <div class="container-fluid">
-
-	      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-	      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	      </a>
-
-	      <!-- Be sure to leave the brand out there if you want it shown -->
-		  <a class="brand" href="#"><img src="https://dl.dropboxusercontent.com/u/26906414/my-board/img/icon-32.png">	My-Board</a>
-
-	      <!-- Everything you want hidden at 940px or less, place within here -->
-	      <div class="nav-collapse collapse">
-				<ul class="nav pull-right" ng-hide="App.currentUser">
-					<li>
-						<a href="#/about">About</a>
-					</li>
-					<li>
-						<a data-toggle="modal" href="#loginModal">Login</a>
-					</li>
-				</ul>
-	        <!-- .nav, .navbar-search, .navbar-form, etc -->
-				<ul class="nav pull-right" ng-show="App.currentUser">	
-					<li>
-						<a href="#/career">My Career</a>
-					</li>
-					<li>
-						<a href="#/health">My Health</a>
-					</li>
-					<li>
-						<a href="#/network">My Network</a>
-					</li>
-					<li>
-						<a href="#" ng-click="App.logout()">Logout</a>
-					</li>
-				</ul>
-	      </div>
-	    </div>
-	  </div>
-	</div>
-	<div class="container">
-		<div class="row">
-			<div class="span12" ng-view>
+						<ul class="nav pull-right" ng-hide="App.currentUser">
+							<li>
+								<a data-toggle="modal" href="#loginModal"> Login</a>
+							</li>
+						</ul>
+						<ul class="nav pull-right" ng-show="App.currentUser">
+							<li>
+								<a href="#/career">My Career</a>
+							</li>
+							<li>
+								<a href="#/health">My Health</a>
+							</li>
+							<li>
+								<a href="#/network">My Network</a>
+							</li>
+							<li>
+								<a href="#" ng-click="App.logout()">Logout</a>
+							</li>
+						</ul>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
-	
-	<footer>
-		<p>Copywrite 2013 &copy; Jonnie Spratley</p>
-	</footer>
+		<div class="container">
+			<div class="row">
+				<div class="span12" ng-view></div>
+			</div>
+			<footer class="clearfix">
+				<p>
+					Copywrite 2013 &copy; Jonnie Spratley
+				</p>
+			</footer>
+		</div>
+		<script src="components/jquery/jquery.js"></script>
+		<script src="components/angular/angular.js"></script>
+		<script src="components/angular-resource/angular-resource.js"></script>
+		<script src="components/angular-cookies/angular-cookies.js"></script>
+		<script src="components/angular-sanitize/angular-sanitize.js"></script>
+		<script src="components/angular-strap/dist/angular-strap.min.js"></script>
+		<script src="components/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+		<script src="components/angular-ui/build/angular-ui.min.js"></script>
+		<script src="https://dl.dropboxusercontent.com/u/26906414/cdn/js/Chart.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+		<script src="http://www.parsecdn.com/js/parse-1.2.8.min.js"></script>
+		<!-- build:js scripts/scripts.js -->
+		<script src="scripts/app.js"></script>
+		<script src="scripts/controllers/main.js"></script>
+		<script src="scripts/directives/widget.js"></script>
+		<script src="scripts/directives/chartjs.js"></script>
+		<script src="scripts/controllers/network.js"></script>
+		<script src="scripts/controllers/career.js"></script>
+		<script src="scripts/controllers/health.js"></script>
+		<script src="scripts/controllers/about.js"></script>
+		<script src="scripts/controllers/callback.js"></script>
+		<script src="scripts/services/parse.js"></script>
+		<script src="scripts/services/HealthService.js"></script>
+		<script src="scripts/services/NetworkService.js"></script>
+		<script src="scripts/services/CareerService.js"></script>
+		<script src="scripts/directives/formitem.js"></script>
+		<script src="scripts/controllers/login.js"></script>
+		<script src="scripts/controllers/signup.js"></script>
+		<script src="scripts/services/ParseService.js"></script>
+		<script src="scripts/directives/tabs.js"></script>
+		<script src="scripts/services/App.js"></script>
+		<!-- endbuild -->
+		<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+		<script>
+			var _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']];
+			( function(d, t) {
+				var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+				g.src = ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+				s.parentNode.insertBefore(g, s)
+			}(document, 'script'));
 
-    <script src="components/jquery/jquery.js"></script>
-    <script src="components/angular/angular.js"></script>
-    <script src="components/angular-resource/angular-resource.js"></script>
-    <script src="components/angular-cookies/angular-cookies.js"></script>
-    <script src="components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="components/angular-strap/dist/angular-strap.min.js"></script>
-    <script src="components/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-    <script src="components/angular-ui/build/angular-ui.min.js"></script>
-	<script src="https://dl.dropboxusercontent.com/u/26906414/cdn/js/Chart.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
-	<script src="http://www.parsecdn.com/js/parse-1.2.8.min.js"></script>
-
-    <!-- build:js scripts/scripts.js -->
-    <script src="scripts/app.js"></script>
-    <script src="scripts/controllers/main.js"></script>
-    <script src="scripts/directives/widget.js"></script>
-    <script src="scripts/directives/chartjs.js"></script>
-    <script src="scripts/controllers/network.js"></script>
-    <script src="scripts/controllers/career.js"></script>
-    <script src="scripts/controllers/health.js"></script>
-    <script src="scripts/controllers/about.js"></script>
-    <script src="scripts/controllers/callback.js"></script>
-    <script src="scripts/services/parse.js"></script>
-    <script src="scripts/services/HealthService.js"></script>
-    <script src="scripts/services/NetworkService.js"></script>
-    <script src="scripts/services/CareerService.js"></script>
-    <script src="scripts/directives/formitem.js"></script>
-    <script src="scripts/controllers/login.js"></script>
-    <script src="scripts/controllers/signup.js"></script>
-    <script src="scripts/services/ParseService.js"></script>
-    <script src="scripts/directives/tabs.js"></script>
-    <script src="scripts/services/App.js"></script>
-    <!-- endbuild -->
-
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-    <script>
-      var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-      (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-      g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-      s.parentNode.insertBefore(g,s)}(document,'script'));
-    </script>
-  </body>
+		</script>
+	</body>
 </html>
