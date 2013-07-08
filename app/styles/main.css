@@ -12,7 +12,7 @@
 html, body{ 
  	padding-top:45px;
 	font-family: Chalkboard, Monico, "Droid Sans";
-	background: #eee url(../img/bg-chalkboard-white.png) repeat scroll 0 0;
+	background: #eee url(../images/bg-chalkboard-white.png) repeat scroll 0 0;
 	color: #333;
 }
 legend{
