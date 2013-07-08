@@ -255,7 +255,18 @@ module.exports = function (grunt) {
             'images/{,*/}*.{gif,webp}',
             'styles/fonts/*'
           ]
-        }]
+        },
+				{
+					expand: true,
+          dot: true,
+					cwd: './',
+          dest: '<%= yeoman.dist %>',
+          src: [
+            'routes/*.{js}',
+            'server.js'
+          ]
+				}
+				]
       }
     }
   });
@@ -284,6 +295,24 @@ module.exports = function (grunt) {
     'clean:dist',
     'jshint',
     'test',
+    'coffee',
+    'compass:dist',
+    'useminPrepare',
+    'imagemin',
+    'cssmin',
+    'htmlmin',
+    'concat',
+    'copy',
+    'cdnify',
+    'ngmin',
+    'uglify',
+    'rev',
+    'usemin'
+  ]);
+  grunt.registerTask('build:q', [
+    'clean:dist',
+//    'jshint',
+//    'test',
     'coffee',
     'compass:dist',
     'useminPrepare',
