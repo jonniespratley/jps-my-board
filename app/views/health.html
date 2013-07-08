@@ -1,292 +1,293 @@
 <article id="health" ng-init="Health.init()">
 
-	  <div class="alert">
-	    <h3>My Health - Board</h3>
-	    <p>Hi {{user.name}}, your personal Calorie goal is 3000. Your plan amounts are based on meeting
-	      your nutrient needs. See <a data-toggle="modal" href="#healthProfileModal" >your plan</a> for more details.</p>
-
-
-
-
-	  </div>
+	<div class="pull-right filters">
+		<a class="btn btn-small btn-success" data-toggle="modal" href="#addFoodModal" >Add Food Entry</a>
+		<a class="btn btn-small btn-warning" data-toggle="modal" href="#addActivityModal" >Add Activity</a>
+	</div>
+	<ol class="breadcrumb">
+		<li>
+			<a href="#">Home</a>
+			<span class="divider">/</span>
+		</li>
+		<li class="active">
+			My Health
+		</li>
+	</ol>
+		<div class="alert alert-block">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		<h4>My Health - Board</h4>
+		<p>
+			Hi {{user.name}}, your personal Calorie goal is 3000. Your plan amounts are based on meeting
+			your nutrient needs. See <a data-toggle="modal" href="#healthProfileModal" >your plan</a> for more details.
+		</p>
+	</div>
 	
-	  <div class="pull-right filters">
-			<a class="btn btn-small btn-success" data-toggle="modal" href="#addFoodModal" >Add Food Entry</a>
-    		<a class="btn btn-small btn-warning" data-toggle="modal" href="#addActivityModal" >Add Activity</a>
-	  </div>
-	
-	  <ol class="breadcrumb">
-	    <li>
-	      <a href="#">Home</a>
-	      <span class="divider">/</span> 
-	    </li>
-	    <li class="active">My Health</li>
-	  </ol>
-	
-	
-	
-	  <div class="row-fluid main-features">
-	    <div class="span3">
-		<legend>Daily Overview</legend>
-		
-	      <ul class="nav nav-list">
-		
-	        <li class="nav-header">Fitness</li>
-	        <li>Target: {{user.activity}} min.</li>
-	        <li>Actual: 30 min.</li>
-	
-        	<li class="nav-header">Nutrition</li>
-	
-	        <li class="nav-header">Calories</li>
-	        <li>Allowed:
-	          <span class="label label-success">{{dailyCaloriesLimit}}</span> 
-	        </li>
-	        <li>Used:
-	          <span class="label label-warning">{{dailyCaloriesUsed}}</span> 
-	        </li>
-	        <li>Remaining:
-	          <span class="label label-info">{{dailyCaloriesRemaining}}</span> 
-	        </li>
-	      </ul>
-	    </div>
-	
-	
-	
-	
-	
-	
-	
-	    <div class="span9">
-	      <legend>Weekly Analysis
-	        <small>06/30/2013 - 07/06/2013</small>
-	      </legend>
-			<chartjs id="weeklyChart" data='{{weeklyData}}' type="line" width="700" height="200"></chartjs>
-		      
-				
-
-		
-				
-
-	  </div>
-	  <div class="row-fluid sub-features">
-	    <div class="span5">
-	      <legend>Daily Calorie Limits</legend>
-	      <div class="center clearfix">
-			<chartjs id="calorieLimitsChart" height="200" width="200" data='{{dailyCalorieLimitsData}}'s type="doughnut">
-	        	<img src="http://placehold.it/200x150&amp;text=PieChart">
-			</chartjs>
-	        <p>
-		        <ul class="inline small">
-		          <li>Allowed:
-		            <span class="label label-success">{{dailyCaloriesLimit}}</span> 
-		          </li>
-		          <li>Used:
-		            <span class="label label-warning">{{dailyCaloriesUsed}}</span> 
-		          </li>
-		          <li>Remaining:
-		            <span class="label label-info">{{dailyCaloriesRemaining}}</span> 
-		          </li>
-		        </ul>	        	
-	        </p>
-	      </div>
-	    </div>
-	    <div class="span7">
-	      <legend>Daily Food Group Targets</legend>
-	      <div class="center clearfix">
-			<chartjs id="dailyFoodgroupChart" width="500" height="200" type="bar" data='{{dailyFoodgroupsData}}'>
-				<img src="http://placehold.it/500x150&amp;text=Bar Chart">
-			</chartjs>
-	        <p>
-	        	<ul class="inline small">
-		          <li>Grains:
-		            <span class="label label-grains">10 oz.</span> 
-		          </li>
-		          <li>Vegies:
-		            <span class="label label-vegetables">32 oz.</span> 
-		          </li>
-		          <li>Fruits:
-		            <span class="label label-fruits">20 oz.</span> 
-		          </li>
-		          <li>Dairy:
-		            <span class="label label-dairy">24 oz.</span> 
-		          </li>
-		          <li>Proteins:
-		            <span class="label label-protein">7 oz.</span> 
-		          </li>
-		        </ul>
-	        </p>
-	        
-	      </div>
-	    </div>
-	  </div>
-
-
-	<div id="health-row" class="row-fluid">
-		<div class="span12">
-	   
-		<tabs>
-			<pane title="Activities">
-				<table id="activity-table" class="table table-hover table-small table-condensed ">
-		            <thead>
-		              <tr>
-		                <th><input type="checkbox" class="checkall"/></th>
-		                <th>Activity</th>
-		                <th>Duration</th>
-		                <th>Intensity</th>
-		                <th>Calories Burned</th>
-		                <th>Date</th>
-		                <th></th>
-		              </tr>
-		            </thead>
-		            <tbody>
-		              <tr ng-repeat="item in Health.data.activities" id="activity-{{item.id}}">
-		                <td><input type="checkbox"/></td>
-		                <td>{{item.title}}</td>
-		                <td>{{item.duration}}</td>
-		                <td>{{item.intensity}}</td>
-		                <td>{{item.calories}}</td>
-		                <td>{{item.date | date:'mediumDate'}}</td>
-		                <td>[[Actions]]</td>
-		              </tr>
-		            </tbody>
-		          </table>						
-			</pane>
-			<pane title="Food Entries">
-				<table id="food-table" class="table table-hover table-small table-condensed ">
-		            <thead>
-		              <tr>
-		                <th><input type="checkbox" class="checkall"/></th>
-		                <th>Food</th>
-		                <th>Meal</th>
-		                <th>Calories</th>
-		                <th>Date</th>
-		                <th></th>
-		              </tr>
-		            </thead>
-		            <tbody>
-		              <tr ng-repeat="item in Health.data.foods" id="food-{{item.id}}">
-		                <td><input type="checkbox"/></td>
-		                <td>{{item.title}}</td>
-		                <td>{{item.meal}}</td>
-		                <td>{{item.calories}}</td>
-		                <td>{{item.date | date:'mediumDate'}}</td>
-		                <td>[[Actions]]</td>
-		              </tr>
-		            </tbody>
-		          </table>
-			</pane>
-		</tabs>
-			
+	<div class="row-fluid main-features">
+		<div class="span3">
+			<legend>
+				Daily Overview
+			</legend>
+			<ul class="nav nav-list">
+				<li class="nav-header">
+					Fitness
+				</li>
+				<li>
+					Target: {{user.activity}} min.
+				</li>
+				<li>
+					Actual: 30 min.
+				</li>
+				<li class="nav-header">
+					Nutrition
+				</li>
+				<li class="nav-header">
+					Calories
+				</li>
+				<li>
+					Allowed: <span class="label label-success">{{dailyCaloriesLimit}}</span>
+				</li>
+				<li>
+					Used: <span class="label label-warning">{{dailyCaloriesUsed}}</span>
+				</li>
+				<li>
+					Remaining: <span class="label label-info">{{dailyCaloriesRemaining}}</span>
+				</li>
+			</ul>
 		</div>
-	</div>
-
-
-
-
-	<!-- @TODO: [Add Activity Modal] -->
-	<div class="modal fade hide" id="addActivityModal">
- 	  <div class="modal-header">
-	    <button type="button" class="close" data-dismiss="modal">×</button>
-	    <h3>Add Activity</h3>
-	  </div>
-	  <div class="modal-body">
-	    <form class="form-horizontal">
-			<formitem title="Name:">
-				<input type="text" class="input-medium" ng-model="activity.title"/>
-			</formitem>
-       		<formitem title="Description:">
- 				<textarea class="input-medium" ng-model="activity.body"></textarea>
-			</formitem>
-			<formitem title="Duration:">
-				<input type="number" class="input-medium" ng-model="activity.duration"/>
-				<span class="help-inline">minutes</span>
-			</formitem>
-       		<formitem title="Intensity:">
- 				<input type="text" class="input-medium" ng-model="activity.intensity"/>
-			</formitem>
-       		<formitem title="Calories Burned:">
-   				<input type="number" class="input-medium" ng-model="activity.calories"/>
-			</formitem>
-			<formitem title="Date:">
-				<input type="text" class="input-medium" ng-model="activity.date" data-date-format="mm/dd/yyyy" bs-datepicker>
-			</formitem>
-
-		</form>
-	  </div>
-	  <div class="modal-footer">
-	    <a href="#" class="btn" data-dismiss="modal">Close</a>
-	    <button class="btn btn-primary" ng-click="Health.addActivity(activity)">Save</button>
-	  </div>
-	</div>
-
-
-	<!-- @TODO: [Add Food Modal] -->
-	<div class="modal fade hide" id="addFoodModal">
-	  <div class="modal-header">
-	    <button type="button" class="close" data-dismiss="modal">×</button>
-	    <h3>Add Food Entry</h3>
-	  </div>
-	  <div class="modal-body">
-	    <form class="form-horizontal">
-			<formitem title="Name:">
-				<input type="text" class="input-medium" ng-model="food.title"/>
-			</formitem>
-			<formitem title="Calories:">
-				<input type="number" class="input-medium" ng-model="food.calories"/>
-			</formitem>
-			<formitem title="Meal:">
-				<select class="input-medium" ng-model="food.meal" ng-options="meal for meal in meals"></select>
-			</formitem>
-			<formitem title="Date:">
-				<input type="text" class="input-medium" ng-model="food.date" data-date-format="mm/dd/yyyy" bs-datepicker>
-			</formitem>
-		</form>
-	  </div>
-	  <div class="modal-footer">
-	    <a href="#" class="btn" data-dismiss="modal">Close</a>
-	    <button ng-click="Health.addFood(food);" class="btn btn-primary">Save</button>
-	  </div>
-	</div>
-	
-	
-	<!-- @TODO: [Health Profile] -->
-	<div class="modal fade hide" id="healthProfileModal">
-	  <div class="modal-header">
-	    <button type="button" class="close" data-dismiss="modal">×</button>
-	    <h3>Your Health Profile</h3>
-	  </div>
-	  <div class="modal-body">
-	    <form class="form-horizontal">
-			<formitem title="Name:">
-				<input type="text" class="input-medium" ng-model="user.name"/>
-			</formitem>
-			<formitem title="Gender:">
-				<input type="text" class="input-medium" ng-model="user.gender"/>
-			</formitem>
-			<formitem title="Height:">
-				<input type="text" class="input-medium" ng-model="user.height"/>
-			</formitem>
-			<formitem title="Weight:">
-				<input type="number" class="input-medium" ng-model="user.weight"/>
-			</formitem>
-			<formitem title="Weekly Activity Goal:">
-				<select class="input-large" ng-model="user.activity">
-					<option value="30">Less than 30 min./day of moderate activity</option>
-					<option value="45">More than 30 min./day of moderate activity</option>
-					<option value="60">Less than 60 min./day of moderate activity</option>
-					<option value="120">More than 60 min./day of moderate activity</option>
-				</select>
-			</formitem>
-			<formitem title="Daily Calories Goal:">
-				<input type="number" class="input-medium" ng-model="user.calories"/>
-			</formitem>
-		</form>
-	  </div>
-	  <div class="modal-footer">
-	    <a href="#" class="btn" data-dismiss="modal">Close</a>
-	    <button ng-click="Health.saveUser(user)" class="btn btn-primary">Save</button>
-	  </div>
-	</div>
-	
-	
+		<div class="span9">
+			<legend>
+				Weekly Analysis <small>
+					06/30/2013 - 07/06/2013</small>
+			</legend>
+			<chartjs id="weeklyChart" data='{{weeklyData}}' type="line" width="700" height="200"></chartjs>
+		</div>
+		<div class="row-fluid sub-features">
+			<div class="span5">
+				<legend>
+					Daily Calorie Limits
+				</legend>
+				<div class="center clearfix">
+					<chartjs id="calorieLimitsChart" height="200" width="200" data='{{dailyCalorieLimitsData}}'s type="doughnut">
+						<img src="http://placehold.it/200x150&amp;text=PieChart">
+					</chartjs>
+					<p>
+						<ul class="inline small">
+							<li>
+								Allowed: <span class="label label-success">{{dailyCaloriesLimit}}</span>
+							</li>
+							<li>
+								Used: <span class="label label-warning">{{dailyCaloriesUsed}}</span>
+							</li>
+							<li>
+								Remaining: <span class="label label-info">{{dailyCaloriesRemaining}}</span>
+							</li>
+						</ul>
+					</p>
+				</div>
+			</div>
+			<div class="span7">
+				<legend>
+					Daily Food Group Targets
+				</legend>
+				<div class="center clearfix">
+					<chartjs id="dailyFoodgroupChart" width="500" height="200" type="bar" data='{{dailyFoodgroupsData}}'>
+						<img src="http://placehold.it/500x150&amp;text=Bar Chart">
+					</chartjs>
+					<p>
+						<ul class="inline small">
+							<li>
+								Grains: <span class="label label-grains">10 oz.</span>
+							</li>
+							<li>
+								Vegies: <span class="label label-vegetables">32 oz.</span>
+							</li>
+							<li>
+								Fruits: <span class="label label-fruits">20 oz.</span>
+							</li>
+							<li>
+								Dairy: <span class="label label-dairy">24 oz.</span>
+							</li>
+							<li>
+								Proteins: <span class="label label-protein">7 oz.</span>
+							</li>
+						</ul>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div id="health-row" class="row-fluid">
+			<div class="span12">
+				<tabs>
+					<pane title="Activities">
+						<table id="activity-table" class="table table-hover table-small table-condensed ">
+							<thead>
+								<tr>
+									<th>
+									<input type="checkbox" class="checkall"/>
+									</th>
+									<th>Activity</th>
+									<th>Duration</th>
+									<th>Intensity</th>
+									<th>Calories Burned</th>
+									<th>Date</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="item in Health.data.activities" id="activity-{{item.id}}">
+									<td>
+									<input type="checkbox"/>
+									</td>
+									<td>{{item.title}}</td>
+									<td>{{item.duration}}</td>
+									<td>{{item.intensity}}</td>
+									<td>{{item.calories}}</td>
+									<td>{{item.date | date:'mediumDate'}}</td>
+									<td>[[Actions]]</td>
+								</tr>
+							</tbody>
+						</table>
+					</pane>
+					<pane title="Food Entries">
+						<table id="food-table" class="table table-hover table-small table-condensed ">
+							<thead>
+								<tr>
+									<th>
+									<input type="checkbox" class="checkall"/>
+									</th>
+									<th>Food</th>
+									<th>Meal</th>
+									<th>Calories</th>
+									<th>Date</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="item in Health.data.foods" id="food-{{item.id}}">
+									<td>
+									<input type="checkbox"/>
+									</td>
+									<td>{{item.title}}</td>
+									<td>{{item.meal}}</td>
+									<td>{{item.calories}}</td>
+									<td>{{item.date | date:'mediumDate'}}</td>
+									<td>[[Actions]]</td>
+								</tr>
+							</tbody>
+						</table>
+					</pane>
+				</tabs>
+			</div>
+		</div>
+		<!-- @TODO: [Add Activity Modal] -->
+		<div class="modal fade hide" id="addActivityModal">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					×
+				</button>
+				<h3>Add Activity</h3>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal">
+					<formitem title="Name:">
+						<input type="text" class="input-medium" ng-model="activity.title"/>
+					</formitem>
+					<formitem title="Description:">
+						<textarea class="input-medium" ng-model="activity.body"></textarea>
+					</formitem>
+					<formitem title="Duration:">
+						<input type="number" class="input-medium" ng-model="activity.duration"/>
+						<span class="help-inline">minutes</span>
+					</formitem>
+					<formitem title="Intensity:">
+						<input type="text" class="input-medium" ng-model="activity.intensity"/>
+					</formitem>
+					<formitem title="Calories Burned:">
+						<input type="number" class="input-medium" ng-model="activity.calories"/>
+					</formitem>
+					<formitem title="Date:">
+						<input type="text" class="input-medium" ng-model="activity.date" data-date-format="mm/dd/yyyy" bs-datepicker>
+					</formitem>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<a href="#" class="btn" data-dismiss="modal">Close</a>
+				<button class="btn btn-primary" ng-click="Health.addActivity(activity)">
+					Save
+				</button>
+			</div>
+		</div>
+		<!-- @TODO: [Add Food Modal] -->
+		<div class="modal fade hide" id="addFoodModal">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					×
+				</button>
+				<h3>Add Food Entry</h3>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal">
+					<formitem title="Name:">
+						<input type="text" class="input-medium" ng-model="food.title"/>
+					</formitem>
+					<formitem title="Calories:">
+						<input type="number" class="input-medium" ng-model="food.calories"/>
+					</formitem>
+					<formitem title="Meal:">
+						<select class="input-medium" ng-model="food.meal" ng-options="meal for meal in meals"></select>
+					</formitem>
+					<formitem title="Date:">
+						<input type="text" class="input-medium" ng-model="food.date" data-date-format="mm/dd/yyyy" bs-datepicker>
+					</formitem>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<a href="#" class="btn" data-dismiss="modal">Close</a>
+				<button ng-click="Health.addFood(food);" class="btn btn-primary">
+					Save
+				</button>
+			</div>
+		</div>
+		<!-- @TODO: [Health Profile] -->
+		<div class="modal fade hide" id="healthProfileModal">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					×
+				</button>
+				<h3>Your Health Profile</h3>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal">
+					<formitem title="Name:">
+						<input type="text" class="input-medium" ng-model="user.name"/>
+					</formitem>
+					<formitem title="Gender:">
+						<input type="text" class="input-medium" ng-model="user.gender"/>
+					</formitem>
+					<formitem title="Height:">
+						<input type="text" class="input-medium" ng-model="user.height"/>
+					</formitem>
+					<formitem title="Weight:">
+						<input type="number" class="input-medium" ng-model="user.weight"/>
+					</formitem>
+					<formitem title="Weekly Activity Goal:">
+						<select class="input-large" ng-model="user.activity">
+							<option value="30">Less than 30 min./day of moderate activity</option>
+							<option value="45">More than 30 min./day of moderate activity</option>
+							<option value="60">Less than 60 min./day of moderate activity</option>
+							<option value="120">More than 60 min./day of moderate activity</option>
+						</select>
+					</formitem>
+					<formitem title="Daily Calories Goal:">
+						<input type="number" class="input-medium" ng-model="user.calories"/>
+					</formitem>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<a href="#" class="btn" data-dismiss="modal">Close</a>
+				<button ng-click="Health.saveUser(user)" class="btn btn-primary">
+					Save
+				</button>
+			</div>
+		</div>
 </article>

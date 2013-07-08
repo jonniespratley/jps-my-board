@@ -10,11 +10,14 @@
 
 
 html, body{ 
- 	padding-top:25px;
+ 	padding-top:45px;
 	font-family: Chalkboard, Monico, "Droid Sans";
-	color: #444;
-	background: #fefefe;
+	background: #eee url(../img/bg-chalkboard-white.png) repeat scroll 0 0;
+	color: #333;
+}
+legend{
 
+	border-bottom: 1px dashed #333;
 }
 /* AngularJS Forms Validation
 -------------------------------------------------- */
@@ -43,15 +46,32 @@ select.ng-invalid:focus {
 	margin-top: 3px;
 	margin-right: 5px;
 }
-
+.right{
+	text-align: right;
+}
 
 h1{
 	color: #222;
 }
-.well, .hero-unit{
-
+h3{
+	font-size: 1.6em;
+	white-space: nowrap;
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+.hero-unit{
+	padding: 15px;
+	
+}
+.well{
+	
+	border: 1px solid #ddd;
 }
 
+.widget footer {
+	margin: 0;
+	background-color: #ccc;
+}
 
 
 .main-features {
@@ -66,10 +86,14 @@ h1{
 footer{
 	margin-top:25px;
 	margin-bottom: 35px;
-	font-size:11px;
 	text-align:center;
-}
+	color: #fff;
 
+}
+footer a {
+	color: #fff;
+	
+}
 .center{
 	text-align:center;
 }
@@ -129,8 +153,8 @@ footer{
   position: relative;
 	clear: both;
 	width: auto;
-	margin-bottom: 2em;
 	overflow: hidden;
+	margin-bottom: 1em;
 }
 	
 .widget-header {
@@ -180,12 +204,12 @@ footer{
 
 
 .widget-content {
-	padding: 20px 15px 15px;
 	background: #FFF;
 	border: 1px solid #D5D5D5;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
+	padding: 20px 15px 10px;
 }
 
 .widget-header+.widget-content {
