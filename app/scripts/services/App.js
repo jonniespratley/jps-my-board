@@ -4,7 +4,7 @@ angular.module('myBoardApp').factory('App', [ '$rootScope', '$location', functio
 	var App = {
 		currentUser: Parse.User.current(),
 		init: function(){
-			Parse.initialize("EWJAR5Zkq2VI2XHfPe3vZnc1LYG5eDcbYt0dHwI5", "stymT2WbAK64RXXwhigTHg1HwxuhFAyOWBGXS2LD");
+			
 			if (this.currentUser) {
 					console.log('Logged in.');
 			} else {

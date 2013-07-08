@@ -21,7 +21,7 @@ angular.module('myBoardApp').controller('CareerCtrl', function ($scope, $rootSco
 	$scope.expense = {
 		title: '',
 		amount: '',
-		date: '',
+		date: null,
 		category: ''
 	};
 	

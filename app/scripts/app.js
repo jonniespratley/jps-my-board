@@ -47,3 +47,5 @@ angular.module('myBoardApp', ['ngResource', 'ui', '$strap.directives'])
         redirectTo: '/'
       });
   });
+
+Parse.initialize("EWJAR5Zkq2VI2XHfPe3vZnc1LYG5eDcbYt0dHwI5", "stymT2WbAK64RXXwhigTHg1HwxuhFAyOWBGXS2LD");

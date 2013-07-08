@@ -40,10 +40,10 @@
 				<input type="text" class="input-medium" ng-model="income.title">
 			</formitem>
 			<formitem title="Amount:">
-				<input type="number" class="input-medium" ng-model="income.amount">
+				<input type="text" class="input-medium" ng-model="income.amount">
 			</formitem>
 			<formitem title="Date:">
-				<input type="date" class="input-medium" ng-model="income.date">
+				<input type="text" class="input-medium" ng-model="income.date" data-date-format="mm/dd/yyyy" bs-datepicker>
 			</formitem>
 		</form>
 	  </div>
@@ -97,11 +97,14 @@
 					<input type="text" class="input-medium" ng-model="expense.title"/>
 				</formitem>
 				<formitem title="Amount:">
-					<input type="number" class="input-medium" ng-model="expense.amount" />
+					<input type="text" class="input-medium" ng-model="expense.amount" />
 				</formitem>
 				<formitem title="Category:">
 					<input type="text" class="input-medium" ng-model="expense.category" />
-				</formitem>		
+				</formitem>
+				<formitem title="Date:">
+					<input type="text" class="input-medium" ng-model="expense.date" data-date-format="mm/dd/yyyy" bs-datepicker>
+				</formitem>
 			</form>
 		  </div>
 		  <div class="modal-footer">
@@ -147,13 +150,13 @@
 					<input type="text" class="input-medium" ng-model="asset.title"/>
 				</formitem>
 				<formitem title="Amount:">
-					<input type="number" class="input-medium" ng-model="asset.amount"/>
+					<input type="text" class="input-medium" ng-model="asset.amount"/>
 				</formitem>
 				<formitem title="Category:">
 					<input type="text" class="input-medium" ng-model="asset.category"/>
 				</formitem>								
 				<formitem title="Date:">
-					<input type="date" class="input-medium" ng-model="asset.date">
+					<input type="text" class="input-medium" ng-model="asset.date" data-date-format="mm/dd/yyyy" bs-datepicker>
 				</formitem>
 				
 			</form>

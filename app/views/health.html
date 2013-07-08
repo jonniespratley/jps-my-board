@@ -1,24 +1,19 @@
 <article id="health" ng-init="Health.init()">
 
-	  <div class="well">
-	    <h1>My Health - Board</h1>
+	  <div class="alert">
+	    <h3>My Health - Board</h3>
 	    <p>Hi {{user.name}}, your personal Calorie goal is 3000. Your plan amounts are based on meeting
 	      your nutrient needs. See <a data-toggle="modal" href="#healthProfileModal" >your plan</a> for more details.</p>
-	    <p>
-	    	<a class="btn btn-warning" data-toggle="modal" href="#addActivityModal" >Add Activity</a>
-			<a class="btn btn-success" data-toggle="modal" href="#addFoodModal" >Add Food Entry</a>
 
-	    </p>
+
+
+
 	  </div>
-
+	
 	  <div class="pull-right filters">
-
+			<a class="btn btn-small btn-success" data-toggle="modal" href="#addFoodModal" >Add Food Entry</a>
+    		<a class="btn btn-small btn-warning" data-toggle="modal" href="#addActivityModal" >Add Activity</a>
 	  </div>
-	
-	
-	
-	
-	
 	
 	  <ol class="breadcrumb">
 	    <li>
@@ -212,9 +207,10 @@
        		<formitem title="Calories Burned:">
    				<input type="number" class="input-medium" ng-model="activity.calories"/>
 			</formitem>
-			<formitem title="Day:">
-				<select class="input-medium" ng-model="activity.day" ng-options="day for day in days"></select>
+			<formitem title="Date:">
+				<input type="text" class="input-medium" ng-model="activity.date" data-date-format="mm/dd/yyyy" bs-datepicker>
 			</formitem>
+
 		</form>
 	  </div>
 	  <div class="modal-footer">
@@ -241,10 +237,9 @@
 			<formitem title="Meal:">
 				<select class="input-medium" ng-model="food.meal" ng-options="meal for meal in meals"></select>
 			</formitem>
-			<formitem title="Day:">
-				<select class="input-medium" ng-model="food.day" ng-options="day for day in days"></select>
+			<formitem title="Date:">
+				<input type="text" class="input-medium" ng-model="food.date" data-date-format="mm/dd/yyyy" bs-datepicker>
 			</formitem>
-
 		</form>
 	  </div>
 	  <div class="modal-footer">
@@ -275,7 +270,7 @@
 				<input type="number" class="input-medium" ng-model="user.weight"/>
 			</formitem>
 			<formitem title="Weekly Activity Goal:">
-				<select class="input-medium" ng-model="user.activity">
+				<select class="input-large" ng-model="user.activity">
 					<option value="30">Less than 30 min./day of moderate activity</option>
 					<option value="45">More than 30 min./day of moderate activity</option>
 					<option value="60">Less than 60 min./day of moderate activity</option>
