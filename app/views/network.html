@@ -10,55 +10,60 @@
   </ol>
   <div class="row-fluid main-features">
     <div class="span2">
-      <legend>Networks</legend>
-      <ul class="nav nav-list">
-		<li class="nav-header">
-			Connected
-		</li>
-        <li>
-          <a href="#"><i class="icon-twitter-sign"></i> Twitter</a> 
-        </li>
-        <li>
-          <a href="#"><i class="icon-instagram"></i> Instagram</a> 
-        </li>
-		<li>
-          <a href="#"><i class="icon-facebook-sign"></i> Facebook</a> 
-        </li>
-		<li class="nav-header">
-			Not-Connected
-		</li>
-        <li>
-          <a href="#"><i class="icon-foursquare"></i> Foursquare</a> 
-        </li>
-      </ul>
+      <widget title="Networks">
+		<ul class="nav nav-list">
+			<li class="nav-header">
+				Connected
+			</li>
+	        <li>
+	          <a href="#"><i class="icon-twitter-sign"></i> Twitter</a> 
+	        </li>
+	        <li>
+	          <a href="#"><i class="icon-instagram"></i> Instagram</a> 
+	        </li>
+			<li>
+	          <a href="#"><i class="icon-facebook-sign"></i> Facebook</a> 
+	        </li>
+			<li class="nav-header">
+				Not-Connected
+			</li>
+	        <li>
+	          <a href="#"><i class="icon-foursquare"></i> Foursquare</a> 
+	        </li>
+	      </ul>
+	</widget>
     </div>
     <div class="span10">
-      <legend>Social Analysis</legend>
-      <div class="box">
-		<chartjs id="activityChart" data='{{activityChartData}}' type="bar" width="750" height="185">My Activity</chartjs>
-        <img src="http://placehold.it/750x185&amp;text=Line Chart" class="hidden"> 
-      </div>
+		<widget title="Social Analysis">
+			<chartjs id="activityChart" data='{{activityChartData}}' type="bar" width="750" height="185">My Activity</chartjs>
+	        <img src="http://placehold.it/750x185&amp;text=Line Chart" class="hidden">
+		</widget>
     </div>
   </div>
   <div class="row-fluid sub-features">
     <div class="span6">
-      <legend>Friends</legend>
-      <div class="center box">
-        <img src="http://placehold.it/200x200&amp;text=Doughnut Chart" class="hidden">
-		<chartjs id="friendsChart" data='{{friendsChartData}}' type="polar" width="200" height="200">My Friends</chartjs>
-		<ul class="inline">
-          <li ng-repeat="item in friendsChartData">
-          <i class="icon-{{item.label.toLowerCase()}}"></i>	{{item.label}}: <span class="label" style="background-color: {{item.color}};">{{item.value}}</span>
-          </li>
-        </ul>
-      </div>
+		<widget title="Friends">
+			<div class="center box">
+	        <img src="http://placehold.it/200x200&amp;text=Doughnut Chart" class="hidden">
+			<chartjs id="friendsChart" data='{{friendsChartData}}' type="polar" width="200" height="200">My Friends</chartjs>
+			<ul class="inline">
+	          <li ng-repeat="item in friendsChartData">
+	          <i class="icon-{{item.label.toLowerCase()}}"></i>	{{item.label}}: <span class="label" style="background-color: {{item.color}};">{{item.value}}</span>
+	          </li>
+	        </ul>
+	      </div>
+		</widget>
+
     </div>
     <div class="span6">
-      <legend>Trends</legend>
-      <div class="box center">
-        <img src="http://placehold.it/200x200&amp;text=Radar Chart" class="hidden">
-		<chartjs id="trendsChart" data='{{trendsChartData}}' type="line" width="400" height="200">My Trends</chartjs>
-		
-      </div>
+		<widget title="Trends">
+			
+			<div class="box center">
+	        <img src="http://placehold.it/200x200&amp;text=Radar Chart" class="hidden">
+			<chartjs id="trendsChart" data='{{trendsChartData}}' type="line" width="400" height="200">My Trends</chartjs>
+
+	      </div>
+	      
+		</widget>
     </div>
   </div>

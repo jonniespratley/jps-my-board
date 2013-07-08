@@ -5,6 +5,18 @@ angular.module('myBoardApp').factory('App', [ '$rootScope', '$location', functio
 		currentUser: Parse.User.current(),
 		init: function(){
 			
+			window.fbAsyncInit = function() {
+		    // init the FB JS SDK
+				Parse.FacebookUtils.init({
+				    appId      : '143045392563170', // Facebook App ID
+				    channelUrl : '//http://my-board.aws.af.cm/channel.html', // Channel File
+				    status     : true, // check login status
+				    cookie     : true, // enable cookies to allow Parse to access the session
+				    xfbml      : true  // parse XFBML
+				  });
+		  };
+			
+			
 			if (this.currentUser) {
 					console.log('Logged in.');
 			} else {
@@ -15,6 +27,22 @@ angular.module('myBoardApp').factory('App', [ '$rootScope', '$location', functio
 			}
 			return this;
 		},
+		
+		fblogin: function(){
+			Parse.FacebookUtils.logIn(null, {
+			  success: function(user) {
+			    if (!user.existed()) {
+			      alert("User signed up and logged in through Facebook!");
+			    } else {
+			      alert("User logged in through Facebook!");
+			    }
+			  },
+			  error: function(user, error) {
+			    alert("User cancelled the Facebook login or did not fully authorize.");
+			  }
+			});
+		},
+		
 		//Login a user
 		login:function(user){
 				console.log(user);

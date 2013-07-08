@@ -24,102 +24,101 @@
 	
 	<div class="row-fluid main-features">
 		<div class="span3">
-			<legend>
-				Daily Overview
-			</legend>
-			<ul class="nav nav-list">
-				<li class="nav-header">
-					Fitness
-				</li>
-				<li>
-					Target: {{user.activity}} min.
-				</li>
-				<li>
-					Actual: 30 min.
-				</li>
-				<li class="nav-header">
-					Nutrition
-				</li>
-				<li class="nav-header">
-					Calories
-				</li>
-				<li>
-					Allowed: <span class="label label-success">{{dailyCaloriesLimit}}</span>
-				</li>
-				<li>
-					Used: <span class="label label-warning">{{dailyCaloriesUsed}}</span>
-				</li>
-				<li>
-					Remaining: <span class="label label-info">{{dailyCaloriesRemaining}}</span>
-				</li>
-			</ul>
+			<widget title="Overview">
+					<ul class="nav nav-list">
+						<li class="nav-header">
+							Fitness
+						</li>
+						<li>
+							Target: {{user.activity}} min.
+						</li>
+						<li>
+							Actual: 30 min.
+						</li>
+						<li class="nav-header">
+							Nutrition
+						</li>
+						<li class="nav-header">
+							Calories
+						</li>
+						<li>
+							Allowed: <span class="label label-success">{{dailyCaloriesLimit}}</span>
+						</li>
+						<li>
+							Used: <span class="label label-warning">{{dailyCaloriesUsed}}</span>
+						</li>
+						<li>
+							Remaining: <span class="label label-info">{{dailyCaloriesRemaining}}</span>
+						</li>
+					</ul>
+			</widget>
 		</div>
 		<div class="span9">
-			<legend>
-				Weekly Analysis <small>
-					06/30/2013 - 07/06/2013</small>
-			</legend>
-			<chartjs id="weeklyChart" data='{{weeklyData}}' type="line" width="700" height="200"></chartjs>
+			<widget title="Analysis">
+				<chartjs id="weeklyChart" data='{{weeklyData}}' type="line" width="700" height="200"></chartjs>
+			</widget>
+			
 		</div>
 		<div class="row-fluid sub-features">
 			<div class="span5">
-				<legend>
-					Daily Calorie Limits
-				</legend>
-				<div class="center clearfix">
-					<chartjs id="calorieLimitsChart" height="200" width="200" data='{{dailyCalorieLimitsData}}'s type="doughnut">
-						<img src="http://placehold.it/200x150&amp;text=PieChart">
-					</chartjs>
-					<p>
-						<ul class="inline small">
-							<li>
-								Allowed: <span class="label label-success">{{dailyCaloriesLimit}}</span>
-							</li>
-							<li>
-								Used: <span class="label label-warning">{{dailyCaloriesUsed}}</span>
-							</li>
-							<li>
-								Remaining: <span class="label label-info">{{dailyCaloriesRemaining}}</span>
-							</li>
-						</ul>
-					</p>
-				</div>
+				<widget title="Daily Calorie Limit">
+					<div class="center clearfix">
+						<chartjs id="calorieLimitsChart" height="200" width="200" data='{{dailyCalorieLimitsData}}'s type="doughnut">
+							<img src="http://placehold.it/200x150&amp;text=PieChart">
+						</chartjs>
+						<p>
+							<ul class="inline small">
+								<li>
+									Allowed: <span class="label label-success">{{dailyCaloriesLimit}}</span>
+								</li>
+								<li>
+									Used: <span class="label label-warning">{{dailyCaloriesUsed}}</span>
+								</li>
+								<li>
+									Remaining: <span class="label label-info">{{dailyCaloriesRemaining}}</span>
+								</li>
+							</ul>
+						</p>
+					</div>
+				</widget>
+				
 			</div>
 			<div class="span7">
-				<legend>
-					Daily Food Group Targets
-				</legend>
-				<div class="center clearfix">
-					<chartjs id="dailyFoodgroupChart" width="500" height="200" type="bar" data='{{dailyFoodgroupsData}}'>
-						<img src="http://placehold.it/500x150&amp;text=Bar Chart">
-					</chartjs>
-					<p>
-						<ul class="inline small">
-							<li>
-								Grains: <span class="label label-grains">10 oz.</span>
-							</li>
-							<li>
-								Vegies: <span class="label label-vegetables">32 oz.</span>
-							</li>
-							<li>
-								Fruits: <span class="label label-fruits">20 oz.</span>
-							</li>
-							<li>
-								Dairy: <span class="label label-dairy">24 oz.</span>
-							</li>
-							<li>
-								Proteins: <span class="label label-protein">7 oz.</span>
-							</li>
-						</ul>
-					</p>
-				</div>
+
+				<widget title="Daily Food Group Targets">
+						<div class="center clearfix">
+							<chartjs id="dailyFoodgroupChart" width="500" height="200" type="bar" data='{{dailyFoodgroupsData}}'>
+								<img src="http://placehold.it/500x150&amp;text=Bar Chart">
+							</chartjs>
+							<p>
+								<ul class="inline small">
+									<li>
+										Grains: <span class="label label-grains">10 oz.</span>
+									</li>
+									<li>
+										Vegies: <span class="label label-vegetables">32 oz.</span>
+									</li>
+									<li>
+										Fruits: <span class="label label-fruits">20 oz.</span>
+									</li>
+									<li>
+										Dairy: <span class="label label-dairy">24 oz.</span>
+									</li>
+									<li>
+										Proteins: <span class="label label-protein">7 oz.</span>
+									</li>
+								</ul>
+							</p>
+						</div>
+				</widget>
 			</div>
 		</div>
+		
 		<div id="health-row" class="row-fluid">
 			<div class="span12">
 				<tabs>
 					<pane title="Activities">
-						<table id="activity-table" class="table table-hover table-small table-condensed ">
+						<table id="activity-table" class="table table-bordered table-small table-condensed ">
 							<thead>
 								<tr>
 									<th>
@@ -149,7 +148,7 @@
 						</table>
 					</pane>
 					<pane title="Food Entries">
-						<table id="food-table" class="table table-hover table-small table-condensed ">
+						<table id="food-table" class="table table-bordered table-small table-condensed ">
 							<thead>
 								<tr>
 									<th>

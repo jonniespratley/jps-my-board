@@ -71,7 +71,7 @@ angular.module('myBoardApp').controller('CareerCtrl', function ($scope, $rootSco
 		addIncome: function(o){
 			ParseService.add('Income', o, function(data){
 				$scope.$apply(function(){
-					$scope.Career.data.income.push(data);
+					$scope.Career.getIncome();
 					angular.element('#addIncomeModal').modal('toggle');
 				});
 			});
@@ -79,7 +79,7 @@ angular.module('myBoardApp').controller('CareerCtrl', function ($scope, $rootSco
 		addExpense: function(o){
 			ParseService.add('Expense', o, function(data){
 				$scope.$apply(function(){
-					$scope.Career.data.expenses.push(data);
+					$scope.Career.getExpenses();
 					angular.element('#addExpenseModal').modal('toggle');
 				});
 			});
@@ -87,7 +87,7 @@ angular.module('myBoardApp').controller('CareerCtrl', function ($scope, $rootSco
 		addAsset: function(o){
 			ParseService.add('Asset', o, function(data){
 				$scope.$apply(function(){
-					$scope.Career.data.assets.push(data);
+					$scope.Career.getAssets();
 					angular.element('#addAssetModal').modal('toggle');
 				});
 			});

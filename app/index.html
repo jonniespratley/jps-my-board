@@ -97,7 +97,9 @@
 		<script src="components/angular-ui/build/angular-ui.min.js"></script>
 		<script src="https://dl.dropboxusercontent.com/u/26906414/cdn/js/Chart.min.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+		
 		<script src="http://www.parsecdn.com/js/parse-1.2.8.min.js"></script>
+		
 		<!-- build:js scripts/scripts.js -->
 		<script src="scripts/app.js"></script>
 		<script src="scripts/controllers/main.js"></script>
@@ -119,9 +121,21 @@
 		<script src="scripts/directives/tabs.js"></script>
 		<script src="scripts/services/App.js"></script>
 		<!-- endbuild -->
-		<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+
+		<div id="fb-root"></div>
 		<script>
-			var _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']];
+		  // Load the SDK asynchronously
+		  (function(d, s, id){
+		     var js, fjs = d.getElementsByTagName(s)[0];
+		     if (d.getElementById(id)) {return;}
+		     js = d.createElement(s); js.id = id;
+		     js.src = "//connect.facebook.net/en_US/all.js";
+		     fjs.parentNode.insertBefore(js, fjs);
+		   }(document, 'script', 'facebook-jssdk'));
+		</script>
+
+		<script>
+			var _gaq = [['_setAccount', 'UA-42300995-1'], ['_trackPageview']];
 			( function(d, t) {
 				var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
 				g.src = ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
