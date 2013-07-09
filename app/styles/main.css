@@ -22,13 +22,13 @@ html, body{
 	color: #333;
 }
 body.white{
-	background: #eee url(../images/bg-chalkboard-white.png) repeat scroll 0 0;
+	background: #eee url(http://482d8830b65aad08759c-061ea4bce065674c4dd94b6a107d8d5d.r97.cf1.rackcdn.com/img/bg-chalkboard-white.png) repeat scroll 0 0;
 }
 body.green{
-	background: #eee url(../images/bg-chalkboard-green.png) repeat scroll 0 0;
+	background: #eee url(http://482d8830b65aad08759c-061ea4bce065674c4dd94b6a107d8d5d.r97.cf1.rackcdn.com/img/bg-chalkboard-green.png) repeat scroll 0 0;
 }
 body.black{
-	background: #eee url(../images/bg-chalkboard-black.png) repeat scroll 0 0;
+	background: #eee url(http://482d8830b65aad08759c-061ea4bce065674c4dd94b6a107d8d5d.r97.cf1.rackcdn.com/img/bg-chalkboard-black.png) repeat scroll 0 0;
 }
 .chart-table{
 	width: 225px;
@@ -79,9 +79,29 @@ h3{
 	margin-top: 2px;
 	margin-bottom: 2px;
 }
+
+.navbar.navbar-inverse .navbar-inner {
+	
+	-webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+	-moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+}
 .hero-unit{
 	padding: 15px;
 	border: 1px solid #ccc;
+}
+.hero-unit-green{
+	padding: 15px;
+	border: 1px solid #ccc;
+	background: #333; /* Old browsers */
+	background: -moz-radial-gradient(center, ellipse cover, #6ACA92 0%, #3A8A56 100%); /* FF3.6+ */
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#6ACA92), color-stop(100%,#3A8A56)); /* Chrome,Safari4+ */
+	background: -webkit-radial-gradient(center, ellipse cover, #6ACA92 0%,#3A8A56 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-radial-gradient(center, ellipse cover, #6ACA92 0%,#000 100%); /* Opera 12+ */
+	background: -ms-radial-gradient(center, ellipse cover, #6ACA92 0%,#3A8A56 100%); /* IE10+ */
+	background: radial-gradient(center, ellipse cover, #6ACA92 0%,#3A8A56 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6ACA92', endColorstr='#3A8A56',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
 }
 .well{
 	border: 1px solid #ccc;	
@@ -99,12 +119,13 @@ h3{
 footer p{
 	text-align:center;
 }
-footer{
-	margin-top:25px;
-	margin-bottom: 35px;
 
+footer{
+	clear: both;
 	color: #ccc;
 	font-size: 11px;
+	margin-top: 55px;
+	margin-bottom: 25px;
 }
 footer a {
 	color: #ccc;

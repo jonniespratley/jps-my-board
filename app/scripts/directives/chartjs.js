@@ -14,19 +14,24 @@ angular.module('myBoardApp')
 	      data: '@'
 			},
 			template: '<div class="chartjs-wrap"><legend ng-show="{{title}}">{{title}}</legend><canvas id="chart_{{id}}" width="{{width}}" height="{{height}}">Content</canvas></div>',
-      link: function postLink(scope, element, attrs, ngModel) {
+      link: function preLink(scope, element, attrs, ngModel) {
 					var id = '#chart_'+attrs.id,
 								options = attrs.options, 
 			          type = attrs.type,
 			          data = angular.fromJson(attrs.data);
 
-					scope.$watch(attrs.data, function(value) {
+
+
+
+					//Watch for dat changes
+					attrs.$observe('data', function(value) {
 						data = angular.fromJson(attrs.data);
-					  
 						if(data.length || data.labels){
 							buildChart();
 						}
-					}); 
+						console.log('data has changed value to ', data);
+					});
+					
 
 				function createChart(id, type, data, options){
 					var ctx = angular.element(id).get(0).getContext("2d"), 
