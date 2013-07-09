@@ -29,8 +29,5 @@ angular.module('myBoardApp').controller('MainCtrl', function ($scope, $rootScope
 			password: '',
 			email: null
 		};
-		
-		
-		
-		window.App = $rootScope.App = App.init();
+
 });

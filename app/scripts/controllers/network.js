@@ -1,5 +1,5 @@
 'use strict';
-angular.module('myBoardApp').controller('NetworkCtrl', function ($scope, $rootScope) {
+angular.module('myBoardApp').controller('NetworkCtrl', function ($scope, $rootScope, App) {
 /* ======================[ @TODO: 
 <li>Facebook: 137 photos | 734 friends | 4 followers</li>
 <li>Twitter: 1,309 TWEETS | 90 FOLLOWING | 101 FOLLOWERS</li>
@@ -118,9 +118,18 @@ angular.module('myBoardApp').controller('NetworkCtrl', function ($scope, $rootSc
 
 
 
+	$scope.Network = {
+		
+		getFacebookData: function(){
+			//1127649845?fields=id,name,birthday,gender,photos.fields(id,link,name),statuses.fields(id,message),friends.fields(id,name,link),subscribers.fields(id,link,name),likes.fields(id,name,link),posts.fields(id,link)
+		}
+		
+	};
+
+
 
 	$scope.init = function(){
-		$rootScope.App.init();
+		App.init();
 		$scope.buildFriendsChart();
 	}
 	

@@ -9,7 +9,7 @@
     <li class="active">My Network</li>
   </ol>
   <div class="row-fluid main-features">
-    <div class="span2">
+    <div class="span2 hidden-phone">
       <widget title="Networks">
 		<ul class="nav nav-list">
 			<li class="nav-header">
@@ -46,7 +46,7 @@
 			<div class="center box">
 	        <img src="http://placehold.it/200x200&amp;text=Doughnut Chart" class="hidden">
 			<chartjs id="friendsChart" data='{{friendsChartData}}' type="polar" width="200" height="200">My Friends</chartjs>
-			<ul class="inline">
+			<ul class="inline small hidden-">
 	          <li ng-repeat="item in friendsChartData">
 	          <i class="icon-{{item.label.toLowerCase()}}"></i>	{{item.label}}: <span class="label" style="background-color: {{item.color}};">{{item.value}}</span>
 	          </li>

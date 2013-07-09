@@ -6,7 +6,8 @@ angular.module('myBoardApp').controller('CareerCtrl', function ($scope, $rootSco
 		title: null,
 		amount: null,
 		date: null,
-		category: null
+		category: null,
+		color: null
 	};
 	
 	//Asset object
@@ -14,7 +15,8 @@ angular.module('myBoardApp').controller('CareerCtrl', function ($scope, $rootSco
 		title: null,
 		amount: null,
 		date: null,
-		category: null
+		category: null,
+		color: null
 	};
 	
 	//Expense object
@@ -22,7 +24,8 @@ angular.module('myBoardApp').controller('CareerCtrl', function ($scope, $rootSco
 		title: '',
 		amount: '',
 		date: null,
-		category: ''
+		category: '',
+		color: null
 	};
 	
 	//Net Worth object
@@ -39,8 +42,35 @@ angular.module('myBoardApp').controller('CareerCtrl', function ($scope, $rootSco
 			income: null,
 			assets: null
 		},
+		chartdata:{
+			expenses: [
+				{ color: '#3A8A56', value: 55 }
+			],
+			income: [],
+			assets: [
+				{ color: '#3A8A56', value: 25 }
+			],
+			networth: {
+				labels : ["January","February","March","April","May","June","July"],
+					datasets : [
+						{
+							fillColor : "rgba(220,220,220,0.5)",
+							strokeColor : "rgba(220,220,220,1)",
+							pointColor : "rgba(220,220,220,1)",
+							pointStrokeColor : "#fff",
+							data : [65,59,90,81,56,55,40]
+						},
+						{
+							fillColor : "rgba(151,187,205,0.5)",
+							strokeColor : "rgba(151,187,205,1)",
+							pointColor : "rgba(151,187,205,1)",
+							pointStrokeColor : "#fff",
+							data : [28,48,40,19,96,27,100]
+						}
+					]
+			}
+		},
 		init: function(){
-			App.init();
 			this.getIncome();
 			this.getAssets();
 			this.getExpenses();
@@ -99,8 +129,18 @@ angular.module('myBoardApp').controller('CareerCtrl', function ($scope, $rootSco
 			//Loop all expenses, assets, and income, total up the amount field.
 			
 			
+		},
+		
+		//Build the chart data for all charts
+		buildChartData: function(){
+			var assets = [];
+			angular.forEach($scope.Career.data.assets, function(obj){
+				assets.push({ color: obj.color, value: obj.amount });
+			});
+			$scope.Career.chartdata.assets = assets;
 		}
 	};
 	
+	window.Career = $scope.Career;
 	console.log($scope);
 });

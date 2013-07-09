@@ -9,7 +9,7 @@ angular.module('myBoardApp')
     ];
 		
 		
-		
+		$scope.currentDate = new Date();
 		
 		$scope.colors = {
 			grains: '#CB662E',
@@ -184,10 +184,11 @@ angular.module('myBoardApp')
 			calories: 250,
 			foodgroups: {
 				grains: 3,
-				vegetables: 0.5,
-				dairy: 0.3,
-				protein: 2.3,
-				oils: 0.2
+				fruits: 0,
+				vegetables: 5,
+				dairy: 3,
+				protein: 3,
+				oils: 2
 			},
 			user_id: 1
 		};

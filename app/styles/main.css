@@ -6,8 +6,15 @@
 @import url('//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css');
 @import url('//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css');
 @import url('/components/bootstrap-datepicker/css/datepicker.css');
+@import url('/components/bootstrap-colorpicker/css/colorpicker.css');
 /* @group Global */
 
+@font-face {
+	font-family: "Chalkboard";
+	font-style: normal;
+	src: url(../fonts/Chalkboard.ttc); /*if IE */
+	src: local("Chalkboard"), url("../fonts/Chalkboard.ttc") format("truetype");     
+}
 
 html, body{ 
  	padding-top:35px;

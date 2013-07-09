@@ -1,8 +1,7 @@
 <article id="health" ng-init="Health.init()">
 
 	<div class="pull-right filters">
-		<a class="btn btn-small btn-success" data-toggle="modal" href="#addFoodModal" >Add Food Entry</a>
-		<a class="btn btn-small btn-warning" data-toggle="modal" href="#addActivityModal" >Add Activity</a>
+		Todays Date: {{currentDate | date:'mediumDate' }}
 	</div>
 	<ol class="breadcrumb">
 		<li>
@@ -13,7 +12,7 @@
 			My Health
 		</li>
 	</ol>
-		<div class="alert alert-block">
+		<div class="alert alert-block ">
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
 		<h4>My Health - Board</h4>
 		<p>
@@ -24,33 +23,22 @@
 	
 	<div class="row-fluid main-features">
 		<div class="span3">
-			<widget title="Overview">
+			<widget title="Meals">
+					
 					<ul class="nav nav-list">
 						<li class="nav-header">
-							Fitness
+							Breakfast <small><span class="label label-info small">0</span></small>
 						</li>
-						<li>
-							Target: {{user.activity}} min.
-						</li>
-						<li>
-							Actual: 30 min.
-						</li>
+
 						<li class="nav-header">
-							Nutrition
+							Lunch <small><span class="label label-info small">0</span></small>
 						</li>
+
 						<li class="nav-header">
-							Calories
-						</li>
-						<li>
-							Allowed: <span class="label label-success">{{dailyCaloriesLimit}}</span>
-						</li>
-						<li>
-							Used: <span class="label label-warning">{{dailyCaloriesUsed}}</span>
-						</li>
-						<li>
-							Remaining: <span class="label label-info">{{dailyCaloriesRemaining}}</span>
+							Dinner <small><span class="label label-info small">0</span></small>
 						</li>
 					</ul>
+					<p>Total Calories Eaten: {{dailyCaloriesUsed}} Calories</p>
 			</widget>
 		</div>
 		<div class="span9">
@@ -118,62 +106,78 @@
 			<div class="span12">
 				<tabs>
 					<pane title="Activities">
-						<table id="activity-table" class="table table-bordered table-small table-condensed ">
-							<thead>
-								<tr>
-									<th>
-									<input type="checkbox" class="checkall"/>
-									</th>
-									<th>Activity</th>
-									<th>Duration</th>
-									<th>Intensity</th>
-									<th>Calories Burned</th>
-									<th>Date</th>
-									<th></th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr ng-repeat="item in Health.data.activities" id="activity-{{item.id}}">
-									<td>
-									<input type="checkbox"/>
-									</td>
-									<td>{{item.title}}</td>
-									<td>{{item.duration}}</td>
-									<td>{{item.intensity}}</td>
-									<td>{{item.calories}}</td>
-									<td>{{item.date | date:'mediumDate'}}</td>
-									<td>[[Actions]]</td>
-								</tr>
-							</tbody>
-						</table>
+						<widget title="Activities">
+							<a class="btn btn-small btn-warning" data-toggle="modal" href="#addActivityModal" >Add Activity</a>
+							<table id="activity-table" class="table table-bordered table-small table-hover ">
+								<thead>
+									<tr>
+										<th>
+										<input type="checkbox" class="checkall"/>
+										</th>
+										<th>Activity</th>
+										<th>Duration</th>
+										<th>Intensity</th>
+										<th>Calories Burned</th>
+										<th>Date</th>
+										<th>Actions</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="item in Health.data.activities" id="activity-{{item.id}}">
+										<td>
+										<input type="checkbox"/>
+										</td>
+										<td>{{item.title}}</td>
+										<td>{{item.duration}}</td>
+										<td>{{item.intensity}}</td>
+										<td>{{item.calories}}</td>
+										<td>{{item.date | date:'mediumDate'}}</td>
+										<td class="actions">
+											<div class="btn-group">
+												<a href="#addActivityModal" data-toggle="modal" ng-click="Health.selectActivity(item);" class="btn btn-small"><i class="icon-edit"></i></a>
+												<a href="#" ng-click="Health.destroyActivity(item);" class="btn btn-small btn-danger delete"><i class="icon-remove"></i></a>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</widget>
 					</pane>
 					<pane title="Food Entries">
-						<table id="food-table" class="table table-bordered table-small table-condensed ">
-							<thead>
-								<tr>
-									<th>
-									<input type="checkbox" class="checkall"/>
-									</th>
-									<th>Food</th>
-									<th>Meal</th>
-									<th>Calories</th>
-									<th>Date</th>
-									<th></th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr ng-repeat="item in Health.data.foods" id="food-{{item.id}}">
-									<td>
-									<input type="checkbox"/>
-									</td>
-									<td>{{item.title}}</td>
-									<td>{{item.meal}}</td>
-									<td>{{item.calories}}</td>
-									<td>{{item.date | date:'mediumDate'}}</td>
-									<td>[[Actions]]</td>
-								</tr>
-							</tbody>
-						</table>
+						<widget title="Food Entries">
+							<a class="btn btn-small btn-success" data-toggle="modal" href="#addFoodModal" >Add Food Entry</a>
+							<table id="food-table" class="table table-bordered table-small table-hover ">
+								<thead>
+									<tr>
+										<th>
+										<input type="checkbox" class="checkall"/>
+										</th>
+										<th>Food</th>
+										<th>Meal</th>
+										<th>Calories</th>
+										<th>Date</th>
+										<th>Actions</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="item in Health.data.foods" id="food-{{item.id}}">
+										<td>
+										<input type="checkbox"/>
+										</td>
+										<td>{{item.title}}</td>
+										<td>{{item.meal}}</td>
+										<td>{{item.calories}}</td>
+										<td>{{item.date | date:'mediumDate'}}</td>
+										<td class="actions">
+											<div class="btn-group">
+												<a href="#addFoodModal" data-toggle="modal" ng-click="Health.selectFood(item);" class="btn btn-small"><i class="icon-edit"></i></a>
+												<a href="#" ng-click="Health.destroyFood(item);" class="btn btn-small btn-danger delete"><i class="icon-remove"></i></a>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</widget>
 					</pane>
 				</tabs>
 			</div>
@@ -229,14 +233,31 @@
 					<formitem title="Name:">
 						<input type="text" class="input-medium" ng-model="food.title"/>
 					</formitem>
-					<formitem title="Calories:">
-						<input type="number" class="input-medium" ng-model="food.calories"/>
-					</formitem>
 					<formitem title="Meal:">
 						<select class="input-medium" ng-model="food.meal" ng-options="meal for meal in meals"></select>
 					</formitem>
 					<formitem title="Date:">
 						<input type="text" class="input-medium" ng-model="food.date" data-date-format="mm/dd/yyyy" bs-datepicker>
+					</formitem>
+					<formitem title="Calories:">
+						<input type="number" class="input-medium" ng-model="food.calories"/>
+					</formitem>
+					
+					<legend>Food Groups</legend>
+					<formitem title="Grains:">
+						<input type="number" class="input-medium" ng-model="food.foodgroups.grains"/>
+					</formitem>
+					<formitem title="Vegetables:">
+						<input type="number" class="input-medium" ng-model="food.foodgroups.vegetables"/>
+					</formitem>
+					<formitem title="Dairy:">
+						<input type="number" class="input-medium" ng-model="food.foodgroups.dairy"/>
+					</formitem>
+					<formitem title="Protein Foods:">
+						<input type="number" class="input-medium" ng-model="food.foodgroups.protein"/>
+					</formitem>
+					<formitem title="Oils:">
+						<input type="number" class="input-medium" ng-model="food.foodgroups.oils"/>
 					</formitem>
 				</form>
 			</div>

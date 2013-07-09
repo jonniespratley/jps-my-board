@@ -28,6 +28,7 @@ angular.module('myBoardApp').factory('ParseService', [ '$q', function ($q) {
 										calories: obj.get('calories'),
 										date: obj.get('date'),
 										amount: obj.get('amount'),
+										color: obj.get('color'),
 										created: obj.createdAt,
 										updated: obj.updatedAt
 									}

@@ -2,7 +2,13 @@
 angular.module('myBoardApp').factory('App', [ '$rootScope', '$location', function ($rootScope, $location) {
 	//Main App Object
 	var App = {
+		debug: true,
 		currentUser: Parse.User.current(),
+		nav: [
+			{ title: 'My Career', icon: 'briefcase', href:'career' },
+			{ title: 'My Health', icon: 'medkit', href:'health' },
+			{ title: 'My Network', icon: 'sitemap', href:'network' }
+		],
 		init: function(){
 			
 			window.fbAsyncInit = function() {
@@ -16,29 +22,34 @@ angular.module('myBoardApp').factory('App', [ '$rootScope', '$location', functio
 				  });
 		  };
 			
-			
 			if (this.currentUser) {
-					console.log('Logged in.');
+					this.log('Logged in.');
 			} else {
 				this.currentUser = null;
 				$location.url('/');
-				// show the signup or login page
-				console.log('Logged out.');
+				this.log('Logged out.');
 			}
 			return this;
+		},
+		
+		//logger
+		log: function(obj){
+			if(this.debug){
+				console.log(obj);
+			}
 		},
 		
 		fblogin: function(){
 			Parse.FacebookUtils.logIn(null, {
 			  success: function(user) {
 			    if (!user.existed()) {
-			      alert("User signed up and logged in through Facebook!");
+			      this.log("User signed up and logged in through Facebook!");
 			    } else {
-			      alert("User logged in through Facebook!");
+			      this.log("User logged in through Facebook!");
 			    }
 			  },
 			  error: function(user, error) {
-			    alert("User cancelled the Facebook login or did not fully authorize.");
+			    this.log("User cancelled the Facebook login or did not fully authorize.");
 			  }
 			});
 		},
@@ -50,7 +61,7 @@ angular.module('myBoardApp').factory('App', [ '$rootScope', '$location', functio
 				  success: function(user) {
 						$rootScope.$apply(function(){
 							$rootScope.App.currentUser = user;
-							angular.element('#loginModal').modal('toggle');
+							angular.element('#loginModal').modal('hide');
 						});
 				  },
 				  error: function(user, error) {
@@ -65,28 +76,31 @@ angular.module('myBoardApp').factory('App', [ '$rootScope', '$location', functio
 			},
 			//Signup a user
 			signup: function(user){
-				console.log(user);
+				var self = this;
+				self.log(user);
+				
+				/*
 				var user = new Parse.User();
-				user.set("username", user.username);
-				user.set("password", user.password);
-				user.set("email", user.email);
-				// other fields can be set just like with Parse.Object
-				user.set('name', user.username);
-				user.set("height", '5-11');
-				user.set('weight', 0);
-				user.set('activity', 30);
-				user.set('gender', 'm');
-				user.set('calories', 0);
-				user.signUp(null, {
-				  success: function(user) {
-				    // Hooray! Let them use the app now.
-						angular.element('#signupModal').modal('toggle');
-				  },
-				  error: function(user, error) {
-				    // Show the error message somewhere and let the user try again.
-				    alert("Error: " + error.code + " " + error.message);
-				  }
-				});
+						user.set("username", user.username);
+						user.set("password", user.password);
+						user.set("email", user.email);
+						user.set('name', user.username);
+						user.set("height", '5-11');
+						user.set('weight', 0);
+						user.set('activity', 30);
+						user.set('gender', 'm');
+						user.set('calories', 0);
+					*/
+					Parse.User.signUp(user.username, user.password, { ACL: new Parse.ACL() }, {
+					  success: function(u) {
+							angular.element('#signupModal').modal('toggle');
+							self.login(user);
+					  },
+					  error: function(u, error) {
+				    	alert("Error: " + error.code + " " + error.message);
+					  }
+					});
+
 			},
 			//Reset password
 			reset:function(user){

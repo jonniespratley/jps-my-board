@@ -14,26 +14,34 @@ angular.module('myBoardApp')
 	      data: '@'
 			},
 			template: '<div class="chartjs-wrap"><legend ng-show="{{title}}">{{title}}</legend><canvas id="chart_{{id}}" width="{{width}}" height="{{height}}">Content</canvas></div>',
-      link: function postLink(scope, element, attrs) {
-				
-				var id = '#chart_'+attrs.id,
-						options = attrs.options, 
-	          type = attrs.type,
-	          data = angular.toJson(attrs.data);
+      link: function postLink(scope, element, attrs, ngModel) {
+					var id = '#chart_'+attrs.id,
+								options = attrs.options, 
+			          type = attrs.type,
+			          data = angular.fromJson(attrs.data);
 
-				 // watch the expression, and update the UI on change.
 					scope.$watch(attrs.data, function(value) {
 						data = angular.fromJson(attrs.data);
-					  buildChart();
-					});
-				
+					  
+						if(data.length || data.labels){
+							buildChart();
+						}
+					}); 
+
 				function createChart(id, type, data, options){
-				
-					console.log(id, type, data);
 					var ctx = angular.element(id).get(0).getContext("2d"), 
 							myNewChart = null, 
-							defaults = angular.extend({}, options);
-
+							defaults = angular.extend({}, options),
+							wrapper = angular.element(id).parent();
+			        
+						//Apply new height and width
+			       scope.$apply(function(){
+	            scope.width = wrapper.width();
+	            scope.height = wrapper.height();
+	          });
+	
+	
+					
 				    switch(type){
 				      case 'line':
 				        myNewChart = new Chart(ctx).Line(data, defaults);
@@ -59,8 +67,6 @@ angular.module('myBoardApp')
 				    }  
 				  return myNewChart;
 				}
-
-
 				function buildChart(){
 						setTimeout(function(){
 							createChart(id, type, data, options);

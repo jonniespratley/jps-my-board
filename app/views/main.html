@@ -1,15 +1,15 @@
-<div class="hero-unit hidden-phone">
+<div class="hero-unit hidden-">
 	<div class="row-fluid">
 		<div class="span7 center">
 			<h1>Welcome!</h1>
 			<p>My-Board is your personal career, health and life dashboard.</p>
 			<a class="btn btn-large btn-primary" data-toggle="modal" href="#signupModal" ng-hide="App.currentUser"><i class="icon-star"></i> Sign Up</a>
-			<a class="btn btn-large btn-" href="#/about" ng-hide="App.currentUser"><i class="icon-info"></i> More Info</a>
+			
+			<a class="btn btn-large btn-" href="#/about" ><i class="icon-info"></i> More Info</a>
 			
 		</div>
-
 		<div class="span5 right">
-			<img src="images/logo-lg.png" alt="My-Board Logo"/>
+			<img ng-src="{{cdn}}/img/logo-lg.png" alt="My-Board Logo" class="hidden-phone"/>
 		</div>
 	</div>
 	

@@ -47,7 +47,10 @@
 		<!-- @TODO: [Networth] -->
 		<div class="span8">
 			<widget title="Net Worth Performance">
-				<img src="http://placehold.it/750x225&amp;text=Line Chart">
+				<chartjs id="networthChart" type="line" data='{{Career.chartdata.networth}}' ng-model="Career.chartdata.networth" width="600" height="200">
+					<img src="http://placehold.it/750x225&amp;text=Line Chart">
+				</chartjs>
+				
 			</widget>
 		</div>
 	</div>
@@ -55,50 +58,67 @@
 	<div class="row-fluid sub-features">
 		<div class="span6">
 			<widget title="Expenses">
-				<img src="http://placehold.it/200x200&amp;text=Doughnut Chart">
-				<div class="pull-left chart-table">
-					<table class="table table-small table-hover">
-						<thead>
-							<tr>
-								<th>Category</th>
-								<th>Amount ($USD)</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr ng-repeat="item in Career.data.expenses" id="income-{{item.objectId}}">
-								<td>{{item.title}}</td>
-								<td>{{item.amount | currency:$}}</td>
-							</tr>
-						</tbody>
-					</table>
+				<div id="expenses-row" class="row-fluid">
+					<div class="span6">
+							<table class="table table-small table-hover">
+								<thead>
+									<tr>
+										<th>Category</th>
+										<th>Amount ($USD)</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="item in Career.data.expenses" id="income-{{item.objectId}}">
+										<td>{{item.title}}</td>
+										<td>{{item.amount | currency:$}}</td>
+									</tr>
+								</tbody>
+							</table>		
+					</div>
+					<div class="span6 center">
+							<chartjs id="expensesChart" type="pie" data='{{Career.chartdata.expenses}}' width="150" height="150">
+								<img src="http://placehold.it/200x200&amp;text=Radar Chart">
+							</chartjs>						
+					</div>	
 				</div>
+				
 				<footer>
-					<a class="btn btn-mini" data-toggle="modal" href="#addExpenseModal" ><i class="icon-plus"></i></a>
+					<a class="btn btn-mini" data-toggle="modal" href="#addExpenseModal" ><i class="icon-plus"></i> Add Expense</a>
 				</footer>
 			</widget>
 		</div>
 		<!-- @TODO: [Assets] -->
 		<div class="span6">
 			<widget title="Assets">
-				<img src="http://placehold.it/200x200&amp;text=Radar Chart">
-				<div class="pull-left chart-table">
-					<table class="table table-small table-hover">
-						<thead>
-							<tr>
-								<th>Name</th>
-								<th>Amount ($USD)</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr ng-repeat="item in Career.data.assets" id="income-{{item.objectId}}">
-								<td>{{item.title}}</td>
-								<td>{{item.amount | currency:$}}</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
+
+
+
+					<div id="assets-row" class="row-fluid">
+						<div class="span6">
+							<table class="table table-small table-hover">
+								<thead>
+									<tr>
+										<th>Name</th>
+										<th>Amount ($USD)</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="item in Career.data.assets" id="income-{{item.objectId}}">
+										<td>{{item.title}}</td>
+										<td>{{item.amount | currency:$}}</td>
+									</tr>
+								</tbody>
+							</table>
+							
+						</div>
+						<div class="span6 center">
+							<chartjs id="assetsChart" type="pie" data='{{Career.chartdata.assets}}' width="150" height="150">
+								<img src="http://placehold.it/200x200&amp;text=Radar Chart">
+							</chartjs>							
+						</div>	
+					</div>
 				<footer>
-					<a class="btn btn-mini" data-toggle="modal" href="#addAssetModal" ><i class="icon-plus"></i></a>
+					<a class="btn btn-mini" data-toggle="modal" href="#addAssetModal" ><i class="icon-plus"></i> Add Asset</a>
 				</footer>
 			</widget>
 		</div>
@@ -125,6 +145,9 @@
 				</formitem>
 				<formitem title="Date:">
 					<input type="text" class="input-medium" ng-model="expense.date" data-date-format="mm/dd/yyyy" bs-datepicker>
+				</formitem>
+				<formitem title="Color:">
+				  <input type="color" class="input-medium colorpicker" ng-model="expense.color">
 				</formitem>
 			</form>
 		</div>
@@ -154,6 +177,9 @@
 				</formitem>
 				<formitem title="Date:">
 					<input type="text" class="input-medium" ng-model="income.date" data-date-format="mm/dd/yyyy" bs-datepicker>
+				</formitem>
+				<formitem title="Color:">
+				  <input type="color" class="input-medium colorpicker" ng-model="income.color">
 				</formitem>
 			</form>
 		</div>
@@ -186,6 +212,9 @@
 				</formitem>
 				<formitem title="Date:">
 					<input type="text" class="input-medium" ng-model="asset.date" data-date-format="mm/dd/yyyy" bs-datepicker>
+				</formitem>
+				<formitem title="Color:">
+				  <input type="color" class="input-medium colorpicker" ng-model="asset.color">
 				</formitem>
 			</form>
 		</div>
