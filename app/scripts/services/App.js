@@ -2,7 +2,7 @@
 angular.module('myBoardApp').factory('App', [ '$rootScope', '$location', function ($rootScope, $location) {
 	//Main App Object
 	var App = {
-		debug: true,
+		debug: false,
 		currentDate: new Date(),
 		currentUser: Parse.User.current(),
 		nav: [
@@ -45,8 +45,12 @@ angular.module('myBoardApp').factory('App', [ '$rootScope', '$location', functio
 			  success: function(user) {
 			    if (!user.existed()) {
 			      this.log("User signed up and logged in through Facebook!");
+						$rootScope.App.currentUser = user;
+						angular.element('#loginModal').modal('hide');
 			    } else {
 			      this.log("User logged in through Facebook!");
+						$rootScope.App.currentUser = user;
+						angular.element('#loginModal').modal('hide');
 			    }
 			  },
 			  error: function(user, error) {

@@ -40,7 +40,10 @@ angular.module('myBoardApp').controller('CareerCtrl', function ($scope, $rootSco
 		data: {
 			expenses: null,
 			income: null,
-			assets: null
+			assets: null,
+			assetTotal: 0,
+			expenseTotal: 0,
+			incomeTotal: 0
 		},
 		chartdata:{
 			expenses: [
@@ -51,21 +54,14 @@ angular.module('myBoardApp').controller('CareerCtrl', function ($scope, $rootSco
 				{ color: '#3A8A56', value: 25 }
 			],
 			networth: {
-				labels : ["January","February","March","April","May","June","July"],
+				labels : ['Income', 'Expenses'],
 					datasets : [
 						{
-							fillColor : "rgba(220,220,220,0.5)",
-							strokeColor : "rgba(220,220,220,1)",
+							fillColor : "rgba(11,126,39,0.38)",
+							strokeColor : "rgba(21,133,95,0.6)",
 							pointColor : "rgba(220,220,220,1)",
 							pointStrokeColor : "#fff",
-							data : [65,59,90,81,56,55,40]
-						},
-						{
-							fillColor : "rgba(151,187,205,0.5)",
-							strokeColor : "rgba(151,187,205,1)",
-							pointColor : "rgba(151,187,205,1)",
-							pointStrokeColor : "#fff",
-							data : [28,48,40,19,96,27,100]
+							data : [65,59]
 						}
 					]
 			}
@@ -84,19 +80,19 @@ angular.module('myBoardApp').controller('CareerCtrl', function ($scope, $rootSco
 		},
 		
 		getExpenses: function(){
+			var self = this;
 			ParseService.get('Expense', null, function(data){
-				$scope.$apply(function(){
 					$scope.Career.data.expenses = data;
-				});
+					self.buildExpenseChart();
+					self.calcTotals();
 			});
-			
 		},
 		getAssets: function(){
 			var self = this;
 			ParseService.get('Asset', null, function(data){
 					$scope.Career.data.assets = data;
+					self.buildAssetChart();
 			});
-			
 		},
 		getIncome: function(){
 			ParseService.get('Income', null, function(data){
@@ -133,23 +129,57 @@ angular.module('myBoardApp').controller('CareerCtrl', function ($scope, $rootSco
 		
 		//Calculate totals for net worth chart - 
 		calcTotals: function(){
-			
+			var self = this;
 			//Loop all expenses, assets, and income, total up the amount field.
+			var expenseTotal = 0;
+			var assetTotal = 0;
+			var incomeTotal = 0;
+			
+			angular.forEach($scope.Career.data.assets, function(obj){
+				assetTotal += parseFloat(obj.amount);
+			});
+			angular.forEach($scope.Career.data.expenses, function(obj){
+				expenseTotal += parseFloat(obj.amount);
+			});
+			angular.forEach($scope.Career.data.income, function(obj){
+				incomeTotal += parseFloat(obj.amount);
+			});
+			
+			$scope.Career.data.incomeTotal = incomeTotal;
+			$scope.Career.data.expenseTotal = expenseTotal;
+			$scope.Career.data.assetTotal = assetTotal;
+			$scope.Career.chartdata.networth.datasets[0].data = [ incomeTotal, expenseTotal ];
+			
 			
 			
 		},
 		
-		//Build the chart data for all charts
+		//Build the chart data for asset chart
 		buildAssetChart: function(){
-			
-			//Build asset data
-			var assets = $scope.Career.data.assets;
+			var data = $scope.Career.data.assets;
 			$scope.Career.chartdata.assets = [];
-			angular.forEach(assets, function(obj){
+			angular.forEach(data, function(obj){
 				$scope.$apply(function(){
-					$scope.Career.chartdata.assets.push({ color: String(obj.color), value: obj.amount });
+					$scope.Career.chartdata.assets.push({ color: String(obj.color), value: Number(obj.amount) });
 				});
 			});
+		},
+		
+		//Build the chart data for the expenses chart
+		buildExpenseChart: function(){
+			var data = $scope.Career.data.expenses;
+			$scope.Career.chartdata.expenses = [];
+			angular.forEach(data, function(obj){
+				$scope.$apply(function(){
+					$scope.Career.chartdata.expenses.push({ color: String(obj.color), value: Number(obj.amount) });
+				});
+			});
+		},
+		
+		
+		
+		//Build the charts from the data returned
+		buildChart: function(name, data){
 			
 		}
 	};

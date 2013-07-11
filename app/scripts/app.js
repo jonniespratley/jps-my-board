@@ -52,11 +52,18 @@ angular.module('myBoardApp', ['ngResource', 'ui', '$strap.directives', 'colorpic
       });
   });
 
-angular.module('myBoardApp').controller('AppCtrl', function ($scope, $rootScope, ParseService, App) {
+angular.module('myBoardApp').controller('AppCtrl', function ($scope, $rootScope, ParseService, App, $location) {
 	Parse.initialize("EWJAR5Zkq2VI2XHfPe3vZnc1LYG5eDcbYt0dHwI5", "stymT2WbAK64RXXwhigTHg1HwxuhFAyOWBGXS2LD");
 	$rootScope.cdn = 'http://482d8830b65aad08759c-061ea4bce065674c4dd94b6a107d8d5d.r97.cf1.rackcdn.com';
 	
 	window.App = $rootScope.App = App.init();
+	
+	if($location.host() === 'localhost'){
+		App.debug = true;
+	} else {
+		App.debug = false;
+	}
+	
 	
 	angular.element(document).ready(function(){
 		//display the document when everything loads.

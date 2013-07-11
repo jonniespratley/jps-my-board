@@ -282,6 +282,8 @@ angular.module('myBoardApp')
 							
 						},
 						
+						
+						
 						//Build the activity health chart
 						buildActivityChart: function(){
 							//activity.day = labels
