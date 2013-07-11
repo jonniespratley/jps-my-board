@@ -3,6 +3,7 @@ angular.module('myBoardApp').factory('App', [ '$rootScope', '$location', functio
 	//Main App Object
 	var App = {
 		debug: true,
+		currentDate: new Date(),
 		currentUser: Parse.User.current(),
 		nav: [
 			{ title: 'My Career', icon: 'briefcase', href:'career' },
@@ -101,6 +102,10 @@ angular.module('myBoardApp').factory('App', [ '$rootScope', '$location', functio
 					  }
 					});
 
+			},
+			//Handle updating a user
+			saveUser: function(u){
+				Parse.User.current().save();
 			},
 			//Reset password
 			reset:function(user){

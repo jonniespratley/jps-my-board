@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myBoardApp', ['ngResource', 'ui', '$strap.directives'])
+angular.module('myBoardApp', ['ngResource', 'ui', '$strap.directives', 'colorpicker.module'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
@@ -42,6 +42,10 @@ angular.module('myBoardApp', ['ngResource', 'ui', '$strap.directives'])
       .when('/signup', {
         templateUrl: 'views/signup.html',
         controller: 'SignupCtrl'
+      })
+      .when('/profile', {
+        templateUrl: 'views/profile.html',
+        controller: 'ProfileCtrl'
       })
       .otherwise({
         redirectTo: '/'

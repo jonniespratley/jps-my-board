@@ -48,15 +48,33 @@ angular.module('myBoardApp').factory('ParseService', [ '$q', function ($q) {
 						});
 					return delay.promise;
 				},
+				destroy: function(model, data, success, error){
+					var ParseObject = Parse.Object.extend(model);
+					var _parseObject = new ParseObject();
+					console.log('destroy', model, data);
+
+					_parseObject.destroy(data, {
+					  success: function(obj) {
+							console.log(obj);
+					    // The object was deleted from the Parse Cloud.
+								if(success){
+									success(obj);
+								}
+					  },
+					  error: function(myObject, err) {
+							alert(err);
+					    // error is a Parse.Error with an error code and description.
+								if(error){
+									error(err);
+								}
+					  }
+					});
+				},
 				add: function(model, data, success, error){
 					//add user to this data object
 					var ParseObject = Parse.Object.extend(model);
 					var _parseObject = new ParseObject();
-					
-						if(Parse.User.current()){
 							_parseObject.setACL(new Parse.ACL(Parse.User.current()));
-						}
-					
 							_parseObject.save(data, {
 								success: function(object) {
 									if(success){

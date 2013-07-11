@@ -1,0 +1,35 @@
+<form class="form-horizontal" id="profile-form" ng-submit="App.saveUser(user);">
+	<formitem title="Username:">
+		<input type="text" class="input-medium" ng-model="user.username"/>
+	</formitem>
+	<formitem title="Email:">
+		<input type="email" class="input-medium" ng-model="user.email"/>
+	</formitem>
+	
+	<formitem title="Name:">
+		<input type="text" class="input-medium" ng-model="user.name"/>
+	</formitem>
+	<formitem title="Gender:">
+		<input type="text" class="input-medium" ng-model="user.gender"/>
+	</formitem>
+	<formitem title="Height:">
+		<input type="text" class="input-medium" ng-model="user.height"/>
+	</formitem>
+	<formitem title="Weight:">
+		<input type="number" class="input-medium" ng-model="user.weight"/>
+	</formitem>
+	<formitem title="Weekly Activity Goal:">
+		<select class="input-large" ng-model="user.activity">
+			<option value="30">Less than 30 min./day of moderate activity</option>
+			<option value="45">More than 30 min./day of moderate activity</option>
+			<option value="60">Less than 60 min./day of moderate activity</option>
+			<option value="120">More than 60 min./day of moderate activity</option>
+		</select>
+	</formitem>
+	<formitem title="Daily Calories Goal:">
+		<input type="number" class="input-medium" ng-model="user.calories"/>
+	</formitem>
+	<div class="form-actions">
+		<button type="submit" class="btn btn-primary">Update Profile</button>
+	</div>
+</form>

@@ -198,6 +198,11 @@ angular.module('myBoardApp')
 			name: 'date',
 			value: $scope.currentDay
 		};
+		
+		$scope.filterBreakfast = { meal: 'breakfast' };
+		$scope.filterLunch = { meal: 'lunch' };
+		$scope.filterDinner = { meal: 'dinner' };
+		
 
 			Parse.initialize("EWJAR5Zkq2VI2XHfPe3vZnc1LYG5eDcbYt0dHwI5", "stymT2WbAK64RXXwhigTHg1HwxuhFAyOWBGXS2LD");
 			
@@ -264,6 +269,13 @@ angular.module('myBoardApp')
 		              }
 		          });
 		        },
+		
+						destroyFood: function(obj){
+							ParseService.destroy( 'Food', obj, function(e){
+								console.log(e);
+								angular.element('#food-'+obj.id).fadeOut();
+							});
+						},
 		
 						//Build the ui based on the user profile entries and the duration of the activities and the calories of the foods,
 						buildUI: function(){

@@ -75,6 +75,14 @@ angular.module('myBoardApp').controller('CareerCtrl', function ($scope, $rootSco
 			this.getAssets();
 			this.getExpenses();
 		},
+		
+		addItem: function(obj){
+			$scope.$apply(function(){
+				$scope.Career.chartdata.assets.push(obj);
+				$scope.Career.chartdata.expenses.push(obj);
+			});
+		},
+		
 		getExpenses: function(){
 			ParseService.get('Expense', null, function(data){
 				$scope.$apply(function(){
@@ -84,10 +92,9 @@ angular.module('myBoardApp').controller('CareerCtrl', function ($scope, $rootSco
 			
 		},
 		getAssets: function(){
+			var self = this;
 			ParseService.get('Asset', null, function(data){
-				$scope.$apply(function(){
 					$scope.Career.data.assets = data;
-				});
 			});
 			
 		},
@@ -117,6 +124,7 @@ angular.module('myBoardApp').controller('CareerCtrl', function ($scope, $rootSco
 		addAsset: function(o){
 			ParseService.add('Asset', o, function(data){
 				$scope.$apply(function(){
+					$scope.Career.chartdata.assets.push(o);
 					$scope.Career.getAssets();
 					angular.element('#addAssetModal').modal('toggle');
 				});
@@ -132,12 +140,17 @@ angular.module('myBoardApp').controller('CareerCtrl', function ($scope, $rootSco
 		},
 		
 		//Build the chart data for all charts
-		buildChartData: function(){
-			var assets = [];
-			angular.forEach($scope.Career.data.assets, function(obj){
-				assets.push({ color: obj.color, value: obj.amount });
+		buildAssetChart: function(){
+			
+			//Build asset data
+			var assets = $scope.Career.data.assets;
+			$scope.Career.chartdata.assets = [];
+			angular.forEach(assets, function(obj){
+				$scope.$apply(function(){
+					$scope.Career.chartdata.assets.push({ color: String(obj.color), value: obj.amount });
+				});
 			});
-			$scope.Career.chartdata.assets = assets;
+			
 		}
 	};
 	

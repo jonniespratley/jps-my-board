@@ -35,7 +35,7 @@
     </div>
     <div class="span10">
 		<widget title="Social Analysis">
-			<chartjs id="activityChart" data='{{activityChartData}}' type="bar" width="750" height="185">My Activity</chartjs>
+			<chartjs id="activityChart" data='{{activityChartData}}' ng-model="activityChartData" type="bar" width="750" height="185">My Activity</chartjs>
 	        <img src="http://placehold.it/750x185&amp;text=Line Chart" class="hidden">
 		</widget>
     </div>
@@ -45,7 +45,7 @@
 		<widget title="Friends">
 			<div class="center box">
 	        <img src="http://placehold.it/200x200&amp;text=Doughnut Chart" class="hidden">
-			<chartjs id="friendsChart" data='{{friendsChartData}}' type="polar" width="200" height="200">My Friends</chartjs>
+			<chartjs id="friendsChart" data='{{friendsChartData}}' ng-model="friendsChartData" type="polar" width="200" height="200">My Friends</chartjs>
 			<ul class="inline small hidden-">
 	          <li ng-repeat="item in friendsChartData">
 	          <i class="icon-{{item.label.toLowerCase()}}"></i>	{{item.label}}: <span class="label" style="background-color: {{item.color}};">{{item.value}}</span>
@@ -60,7 +60,7 @@
 			
 			<div class="box center">
 	        <img src="http://placehold.it/200x200&amp;text=Radar Chart" class="hidden">
-			<chartjs id="trendsChart" data='{{trendsChartData}}' type="line" width="400" height="200">My Trends</chartjs>
+			<chartjs id="trendsChart" data='{{trendsChartData}}' ng-model="trendsChartData" type="line" width="400" height="200">My Trends</chartjs>
 
 	      </div>
 	      
