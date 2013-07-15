@@ -1,21 +1,27 @@
-
 <div class="modal fade hide" id="loginModal">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal">×</button>
-    <h3>Login</h3>
-  </div>
-  <div class="modal-body">
-    <form class="form-horizontal" >
-		<formitem title="Username:">
-			<input type="text" class="input-large" ng-model="user.username" required/>
-		</formitem>
-		<formitem title="Password:">
-			<input type="password" class="input-large" ng-model="user.password" required/>
-		</formitem>
-	</form>
-  </div>
-  <div class="modal-footer">
-	<button ng-click="App.fblogin()" class="btn btn-primary"> <i class="icon-facebook"></i> Login with Facebook</button> or 
-		<button type="button" class="btn btn-" ng-click="App.login(user)"><i class="icon-lock"></i> Login</button>
-  </div>
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal">
+			×
+		</button>
+		<h3>Login</h3>
+	</div>
+	<div class="modal-body">
+		<form class="form-horizontal" ng-submit="App.login(user)">
+			<formitem title="Username:">
+				<input type="text" class="input-large" ng-model="user.username" required/>
+			</formitem>
+			<formitem title="Password:">
+				<input type="password" class="input-large" ng-model="user.password" required/>
+			</formitem>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<button ng-click="App.fblogin()" class="btn btn-primary">
+			<i class="icon-facebook"></i> Login with Facebook
+		</button>
+		or
+		<button type="button" class="btn btn-" ng-click="App.login(user)">
+			<i class="icon-lock"></i> Login
+		</button>
+	</div>
 </div>

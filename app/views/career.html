@@ -26,13 +26,19 @@
 
 							<th>Name</th>
 							<th>Amount</th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr ng-repeat="item in Career.data.income" id="income-{{item.objectId}}">
-
-							<td><span class="label" style="background-color: {{item.color}}">&nbsp;</span> {{item.title}}</td>
+							<td>
+								<span class="label" style="background-color: {{item.color}}">&nbsp;</span>
+								<a href="#addIncomeModal" data-toggle="modal" ng-click="Career.selectIncome(item);">{{item.title}}</a> 
+							</td>
 							<td>{{item.amount | currency:$}}</td>
+							<td>
+								<button ng-click="Career.destroyIncome(item);" class="btn btn-mini btn-danger"><i class="icon-remove"></i></button>
+							</td>
 						</tr>
 					</tbody>
 				</table>
