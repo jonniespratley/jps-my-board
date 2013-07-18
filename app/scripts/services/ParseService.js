@@ -23,6 +23,7 @@ function($q) {
 								duration : obj.get('duration'),
 								day : obj.get('day'),
 								meal : obj.get('meal'),
+								category : obj.get('category'),
 								intensity : obj.get('intensity'),
 								user_id : obj.get('user_id'),
 								calories : obj.get('calories'),

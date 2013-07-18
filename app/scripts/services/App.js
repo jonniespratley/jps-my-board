@@ -109,7 +109,7 @@ angular.module('myBoardApp').factory('App', [ '$rootScope', '$location', functio
 			},
 			//Handle updating a user
 			saveUser: function(u){
-				Parse.User.current().save();
+				Parse.User.current(u).save();
 			},
 			//Reset password
 			reset:function(user){

@@ -56,13 +56,13 @@ angular.module('myBoardApp').controller('CareerCtrl', function($scope, $rootScop
 				value : 25
 			}],
 			networth : {
-				labels : ['Income', 'Expenses'],
+				labels : ['Income', 'Expenses', 'Assets'],
 				datasets : [{
 					fillColor : "rgba(11,126,39,0.38)",
 					strokeColor : "rgba(21,133,95,0.6)",
 					pointColor : "rgba(220,220,220,1)",
 					pointStrokeColor : "#fff",
-					data : [65, 59]
+					data : [65, 59, 100]
 				}]
 			}
 		},
@@ -166,7 +166,7 @@ angular.module('myBoardApp').controller('CareerCtrl', function($scope, $rootScop
 			if(c) {
 				ParseService.destroy(model, o, function(data) {
 					el.fadeOut();
-					//self.getData(model);
+					self.getData(model);
 				}, function(e) {
 					//alert(e.error);
 				});
@@ -181,7 +181,7 @@ angular.module('myBoardApp').controller('CareerCtrl', function($scope, $rootScop
 					this.getIncome();
 					break;
 				case 'expense':
-					this.getExpense();
+					this.getExpenses();
 					break;
 			}
 		},
@@ -206,7 +206,7 @@ angular.module('myBoardApp').controller('CareerCtrl', function($scope, $rootScop
 			$scope.Career.data.incomeTotal = incomeTotal;
 			$scope.Career.data.expenseTotal = expenseTotal;
 			$scope.Career.data.assetTotal = assetTotal;
-			$scope.Career.chartdata.networth.datasets[0].data = [incomeTotal, expenseTotal];
+			$scope.Career.chartdata.networth.datasets[0].data = [incomeTotal, expenseTotal, assetTotal];
 
 		},
 		//Build the chart data for asset chart

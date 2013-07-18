@@ -30,7 +30,9 @@
 					</thead>
 					<tbody>
 						<tr ng-repeat="item in Career.data.income" id="income-{{item.id}}">
-							<td><span class="label" style="background-color: {{item.color}}">&nbsp;</span> <a href="#addIncomeModal" data-toggle="modal" ng-click="Career.selectIncome(item);">{{item.title}}</a></td>
+							<td><span class="label" style="background-color: {{item.color}}">&nbsp;</span> 
+								<a href="#addIncomeModal" data-toggle="modal" ng-click="Career.selectIncome(item);">{{item.title}}</a>
+							</td>
 							<td>{{item.amount | currency:$}}</td>
 							<td class="actions right">
 							<button ng-click="Career.destroyItem( 'Income', item);" class="btn btn-mini btn-danger">
@@ -69,7 +71,9 @@
 							</thead>
 							<tbody>
 								<tr ng-repeat="item in Career.data.expenses" id="expense-{{item.id}}">
-									<td><span class="label" style="background-color: {{item.color}}">&nbsp;</span> {{item.title}}</td>
+									<td><span class="label" style="background-color: {{item.color}}">&nbsp;</span> 
+										<a href="#addExpenseModal" data-toggle="modal" ng-click="Career.selectExpense(item);">{{item.title}}</a>
+									</td>
 									<td>{{item.amount | currency:$}}</td>
 									<td class="actions right">
 									<button ng-click="Career.destroyItem( 'Expense', item);" class="btn btn-mini btn-danger">
@@ -104,7 +108,9 @@
 							</thead>
 							<tbody>
 								<tr ng-repeat="item in Career.data.assets" id="asset-{{item.id}}">
-									<td><span class="label" style="background-color: {{item.color}}">&nbsp;</span> {{item.title}}</td>
+									<td><span class="label" style="background-color: {{item.color}}">&nbsp;</span> 
+										<a href="#addAssetModal" data-toggle="modal" ng-click="Career.selectAsset(item);">{{item.title}}</a>
+									</td>
 									<td>{{item.amount | currency:$}}</td>
 									<td class="actions right">
 									<button ng-click="Career.destroyItem( 'Asset', item);" class="btn btn-mini btn-danger">
@@ -115,7 +121,7 @@
 						</table>
 					</div>
 					<div class="span6 center">
-						<chartjs id="assetsChart" type="doughnut"
+						<chartjs id="assetsChart" type="pie"
 						data='{{Career.chartdata.assets}}'
 						ng-model="Career.chartdata.assets"
 						width="150" height="150">
