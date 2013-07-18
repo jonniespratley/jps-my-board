@@ -30,6 +30,7 @@ function($q) {
 								date : obj.get('date').toDateString(),
 								amount : obj.get('amount'),
 								color : obj.get('color'),
+								foodgroups : obj.get('foodgroups'),
 								created : obj.createdAt,
 								updated : obj.updatedAt
 							}
@@ -73,7 +74,7 @@ function($q) {
 					data.date = new Date(data.date);
 				}
 				var ParseObject = Parse.Object.extend(model);
-				var _parseObject = new ParseObject();
+				var _parseObject = new ParseObject(data);
 				_parseObject.setACL(new Parse.ACL(Parse.User.current()));
 				_parseObject.save(data, {
 					success : function(object) {

@@ -1,7 +1,11 @@
 <article id="health" ng-init="Health.init()">
-
-	<div class="pull-right filters">
-		Todays Date: {{currentDate | date:'mediumDate' }}
+	<div class="clearfix filters center pull-right">
+		<div class="input-append">
+			<input type="text" class="input-small" placeholder="Todays Date" data-date-format="mm/dd/yyyy" bs-datepicker ng-model="currentDate"/>
+			<button class="btn btn-sall" data-toggle="datepicker">
+				<i class="icon-calendar"></i>
+			</button>
+		</div>
 	</div>
 	<ol class="breadcrumb">
 		<li>
@@ -12,47 +16,45 @@
 			My Health
 		</li>
 	</ol>
-	<div class="alert alert-block hidden">
-		<button type="button" class="close" data-dismiss="alert">&times;</button>
+	<div class="alert alert-block ">
+		<button type="button" class="close" data-dismiss="alert">
+			&times;
+		</button>
 		<h4>My Health - Board</h4>
 		<p>
-			Hi {{user.name}}, your personal Calorie goal is 3000. Your plan amounts are based on meeting
+			Hi {{user.name}}, your personal Calorie goal is {{user.calories}}. Your plan amounts are based on meeting
 			your nutrient needs. See <a data-toggle="modal" href="#healthProfileModal" >your plan</a> for more details.
 		</p>
 	</div>
-	
 	<div class="row-fluid main-features">
 		<div class="span3">
 			<widget title="Meals" modal="addFoodModal">
-					<ul class="nav nav-list">
-						<li class="nav-header">
-							Breakfast 
-						</li>
-						<li ng-repeat="item in Health.data.foods | filter:filterBreakfast">
-							{{item.title}} - {{item.calories}} cal.
-						</li>
-						<li class="nav-header">
-							Lunch
-						</li>
-						<li ng-repeat="item in Health.data.foods | filter:filterLunch">
-							{{item.title}} - {{item.calories}} cal.
-						</li>
-
-						<li class="nav-header">
-							Dinner
-						</li>
-						<li ng-repeat="item in Health.data.foods | filter:filterDinner">
-							{{item.title}} - {{item.calories}} cal.
-						</li>
-					</ul>
-
+				<ul class="nav nav-list">
+					<li class="nav-header">
+						Breakfast
+					</li>
+					<li ng-repeat="item in Health.data.foods | filter:filterBreakfast">
+						{{item.title}} - {{item.calories}} cal.
+					</li>
+					<li class="nav-header">
+						Lunch
+					</li>
+					<li ng-repeat="item in Health.data.foods | filter:filterLunch">
+						{{item.title}} - {{item.calories}} cal.
+					</li>
+					<li class="nav-header">
+						Dinner
+					</li>
+					<li ng-repeat="item in Health.data.foods | filter:filterDinner">
+						{{item.title}} - {{item.calories}} cal.
+					</li>
+				</ul>
 			</widget>
 		</div>
 		<div class="span9">
 			<widget title="Activity" modal="addActivityModal">
 				<chartjs id="weeklyChart" data='{{weeklyData}}' ng-model="weeklyData" type="bar" width="700" height="200"></chartjs>
 			</widget>
-			
 		</div>
 		<div class="row-fluid sub-features">
 			<div class="span5">
@@ -76,39 +78,36 @@
 						</p>
 					</div>
 				</widget>
-				
 			</div>
 			<div class="span7">
-
 				<widget title="Food Group Targets">
-						<div class="center clearfix">
-							<chartjs id="dailyFoodgroupChart" width="500" height="200" type="bar" data='{{dailyFoodgroupsData}}' ng-model="dailyFoodgroupsData">
-								<img src="http://placehold.it/500x150&amp;text=Bar Chart">
-							</chartjs>
-							<p>
-								<ul class="inline small">
-									<li>
-										Grains: <span class="label label-grains">10 oz.</span>
-									</li>
-									<li>
-										Vegies: <span class="label label-vegetables">32 oz.</span>
-									</li>
-									<li>
-										Fruits: <span class="label label-fruits">20 oz.</span>
-									</li>
-									<li>
-										Dairy: <span class="label label-dairy">24 oz.</span>
-									</li>
-									<li>
-										Proteins: <span class="label label-protein">7 oz.</span>
-									</li>
-								</ul>
-							</p>
-						</div>
+					<div class="center clearfix">
+						<chartjs id="dailyFoodgroupChart" width="500" height="200" type="bar" data='{{dailyFoodgroupsData}}' ng-model="dailyFoodgroupsData">
+							<img src="http://placehold.it/500x150&amp;text=Bar Chart">
+						</chartjs>
+						<p>
+							<ul class="inline small">
+								<li>
+									Grains: <span class="label label-grains">10 oz.</span>
+								</li>
+								<li>
+									Vegies: <span class="label label-vegetables">32 oz.</span>
+								</li>
+								<li>
+									Fruits: <span class="label label-fruits">20 oz.</span>
+								</li>
+								<li>
+									Dairy: <span class="label label-dairy">24 oz.</span>
+								</li>
+								<li>
+									Proteins: <span class="label label-protein">7 oz.</span>
+								</li>
+							</ul>
+						</p>
+					</div>
 				</widget>
 			</div>
 		</div>
-		
 		<div id="health-row" class="row-fluid">
 			<div class="span12">
 				<tabs>
@@ -129,21 +128,19 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr ng-repeat="item in Health.data.activities" id="activity-{{item.id}}">
+									<tr ng-repeat="item in Health.data.activities | filter:dateFilter" id="activity-{{item.id}}">
 										<td>
 										<input type="checkbox"/>
 										</td>
-										<td>{{item.title}}</td>
+										<td><a href="#addActivityModal" data-toggle="modal" ng-click="Health.selectActivity(item);" class=""> {{item.title}} </a></td>
 										<td>{{item.duration}}</td>
 										<td>{{item.intensity}}</td>
 										<td>{{item.calories}}</td>
 										<td>{{item.date | date:'mediumDate'}}</td>
 										<td class="actions">
-											<div class="btn-group">
-												<a href="#addActivityModal" data-toggle="modal" ng-click="Health.selectActivity(item);" class="btn btn-small"><i class="icon-edit"></i></a>
-												<a href="#" ng-click="Health.destroyActivity(item);" class="btn btn-small btn-danger delete"><i class="icon-remove"></i></a>
-											</div>
-										</td>
+										<button ng-click="Health.destroyItem( 'Activity', item);" class="btn btn-small btn-danger delete">
+											<i class="icon-remove"></i>
+										</button></td>
 									</tr>
 								</tbody>
 							</table>
@@ -165,20 +162,18 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr ng-repeat="item in Health.data.foods" id="food-{{item.id}}">
+									<tr ng-repeat="item in Health.data.foods | filter:dateFilter" id="food-{{item.id}}">
 										<td>
 										<input type="checkbox"/>
 										</td>
-										<td>{{item.title}}</td>
+										<td><a href="#addFoodModal" data-toggle="modal" ng-click="Health.selectFood(item);" class=""> {{item.title}} </a></td>
 										<td>{{item.meal}}</td>
 										<td>{{item.calories}}</td>
 										<td>{{item.date | date:'mediumDate'}}</td>
 										<td class="actions">
-											<div class="btn-group">
-												<a href="#addFoodModal" data-toggle="modal" ng-click="Health.selectFood(item);" class="btn btn-small"><i class="icon-edit"></i></a>
-												<button ng-click="Health.destroyFood(item);" class="btn btn-small btn-danger delete"><i class="icon-remove"></i></button>
-											</div>
-										</td>
+										<button ng-click="Health.destroyItem( 'Food', item);" class="btn btn-small btn-danger delete">
+											<i class="icon-remove"></i>
+										</button></td>
 									</tr>
 								</tbody>
 							</table>
@@ -193,7 +188,7 @@
 				<button type="button" class="close" data-dismiss="modal">
 					×
 				</button>
-				<h3>Add Activity</h3>
+				<h3>Activity Details</h3>
 			</div>
 			<div class="modal-body">
 				<form class="form-horizontal">
@@ -231,7 +226,7 @@
 				<button type="button" class="close" data-dismiss="modal">
 					×
 				</button>
-				<h3>Add Food Entry</h3>
+				<h3>Food Entry Details</h3>
 			</div>
 			<div class="modal-body">
 				<form class="form-horizontal">
@@ -247,8 +242,9 @@
 					<formitem title="Calories:">
 						<input type="number" class="input-medium" ng-model="food.calories"/>
 					</formitem>
-					
-					<legend>Food Groups</legend>
+					<legend>
+						Food Groups
+					</legend>
 					<formitem title="Grains:">
 						<input type="number" class="input-medium" ng-model="food.foodgroups.grains"/>
 					</formitem>
