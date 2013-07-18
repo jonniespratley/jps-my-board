@@ -47,6 +47,10 @@ angular.module('myBoardApp', ['ngResource', 'ui', '$strap.directives', 'colorpic
         templateUrl: 'views/profile.html',
         controller: 'ProfileCtrl'
       })
+      .when('/oauth', {
+        templateUrl: 'views/oauth.html',
+        controller: 'OauthCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
