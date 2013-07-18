@@ -17,7 +17,7 @@ angular.module('myBoardApp')
 	              '<div class="widget-content" ng-transclude></div></div>',
 			link: function postLink(scope, element, attrs) {
 	      var widgetTitle = element.find('.widget-header .title'),
-	          opened = false;
+	          opened = true;
 
 						widgetTitle.bind('click', toggle);
 

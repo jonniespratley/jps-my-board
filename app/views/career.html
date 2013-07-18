@@ -1,8 +1,7 @@
 <article id="career" ng-init="Career.init()">
 	<div class="clearfix filters center pull-right">
-		Date:
 		<div class="input-append">
-			<input type="text" class="input-small" placeholder="Todays Date" data-date-format="mm/dd/yyyy" bs-datepicker ng-model="App.currentDate"/>
+			<input type="text" class="input-small" placeholder="Todays Date" data-date-format="mm/dd/yyyy" bs-datepicker ng-model="currentDate"/>
 			<button class="btn btn-sall" data-toggle="datepicker">
 				<i class="icon-calendar"></i>
 			</button>
@@ -20,7 +19,8 @@
 	<div class="row-fluid main-features">
 		<div class="span4">
 			<widget title="Income" icon="money" modal="addIncomeModal">
-				<table class="table table-small table-hover">
+				<div ng-hide="(Career.data.income | filter:dateFilter).length" class="alert alert-info"><strong>Heads Up!</strong> You do not have any income for the selected date.</div>
+				<table class="table table-small table-hover" ng-show="(Career.data.income | filter:dateFilter).length">
 					<thead>
 						<tr>
 							<th>Name</th>
@@ -29,7 +29,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="item in Career.data.income" id="income-{{item.id}}">
+						<tr ng-repeat="item in Career.data.income | filter:dateFilter" id="income-{{item.id}}">
 							<td><span class="label" style="background-color: {{item.color}}">&nbsp;</span> 
 								<a href="#addIncomeModal" data-toggle="modal" ng-click="Career.selectIncome(item);">{{item.title}}</a>
 							</td>
@@ -41,6 +41,9 @@
 						</tr>
 					</tbody>
 				</table>
+				
+				
+				
 			</widget>
 		</div>
 		<!-- @TODO: [Networth] -->
@@ -59,8 +62,11 @@
 	<div class="row-fluid sub-features">
 		<div class="span6">
 			<widget title="Expenses" modal="addExpenseModal">
-				<div id="expenses-row" class="row-fluid">
+				<div ng-hide="(Career.data.expenses | filter:dateFilter).length" class="alert alert-info"><strong>Heads Up!</strong> You do not have any expenses for the selected date.</div>
+				
+				<div id="expenses-row" class="row-fluid" ng-show="(Career.data.expenses | filter:dateFilter).length">
 					<div class="span6">
+						
 						<table class="table table-small table-hover">
 							<thead>
 								<tr>
@@ -70,7 +76,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr ng-repeat="item in Career.data.expenses" id="expense-{{item.id}}">
+								<tr ng-repeat="item in Career.data.expenses | filter:dateFilter" id="expense-{{item.id}}">
 									<td><span class="label" style="background-color: {{item.color}}">&nbsp;</span> 
 										<a href="#addExpenseModal" data-toggle="modal" ng-click="Career.selectExpense(item);">{{item.title}}</a>
 									</td>
@@ -84,10 +90,8 @@
 						</table>
 					</div>
 					<div class="span6 center">
-						<chartjs id="expensesChart" type="doughnut"
-						data='{{Career.chartdata.expenses}}'
-						ng-model="Career.chartdata.expenses" width="150" height="150">
-							<img src="http://placehold.it/200x200&amp;text=Radar Chart">
+						<chartjs id="expensesChart" type="doughnut" data='{{Career.chartdata.expenses}}' ng-model="Career.chartdata.expenses" width="150" height="150">
+							<img src="http://placehold.it/200x200&amp;text=Radar Chart" alt="Your browser does not support the canvas element"/>
 						</chartjs>
 					</div>
 				</div>
@@ -138,7 +142,7 @@
 			<button type="button" class="close" data-dismiss="modal">
 				×
 			</button>
-			<h3>Add Expense</h3>
+			<h3>Expense Details</h3>
 		</div>
 		<div class="modal-body">
 			<form id="form_expense" class="form-horizontal">
@@ -172,7 +176,7 @@
 			<button type="button" class="close" data-dismiss="modal">
 				×
 			</button>
-			<h3>Add Income</h3>
+			<h3>Income Details</h3>
 		</div>
 		<div class="modal-body">
 			<form class="form-horizontal">
@@ -203,7 +207,7 @@
 			<button type="button" class="close" data-dismiss="modal">
 				×
 			</button>
-			<h3>Add Asset</h3>
+			<h3>Asset Details</h3>
 		</div>
 		<div class="modal-body">
 			<form class="form-horizontal">

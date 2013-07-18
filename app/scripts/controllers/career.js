@@ -1,5 +1,6 @@
 'use strict';
 angular.module('myBoardApp').controller('CareerCtrl', function($scope, $rootScope, ParseService, App) {
+	$scope.App = App;
 
 	//Income object
 	$scope.income = {
@@ -12,11 +13,11 @@ angular.module('myBoardApp').controller('CareerCtrl', function($scope, $rootScop
 
 	//Asset object
 	$scope.asset = {
-		title : null,
-		amount : null,
+		title : '',
+		amount : '',
 		date : null,
-		category : null,
-		color : null
+		category : '',
+		color : ''
 	};
 
 	//Expense object
@@ -25,7 +26,7 @@ angular.module('myBoardApp').controller('CareerCtrl', function($scope, $rootScop
 		amount : '',
 		date : null,
 		category : '',
-		color : null
+		color : ''
 	};
 
 	//Net Worth object
@@ -35,8 +36,25 @@ angular.module('myBoardApp').controller('CareerCtrl', function($scope, $rootScop
 		expenses : 0
 	};
 
+	//Current date.
+	$scope.currentDate = new Date();
+	
+	//Current date filter, only show data for current date.
+	$scope.dateFilter = $scope.currentDate.toDateString();
+	
+	//Watch when the currentDate changes and set the dateFilter to update the view.
+	$scope.$watch('currentDate', function( newVal, oldVal ){
+		$scope.dateFilter = newVal.toDateString();
+	});
+	
+		
 	//View Controller
 	$scope.Career = {
+		income: $scope.income,
+		asset: $scope.asset,
+		expense: $scope.expense,
+		totals: $scope.totals,
+		currentDate: $scope.App.currentDate,
 		data : {
 			expenses : null,
 			income : null,
@@ -136,12 +154,15 @@ angular.module('myBoardApp').controller('CareerCtrl', function($scope, $rootScop
 			});
 		},
 		selectAsset : function(o) {
+			this.asset = o;
 			$scope.asset = o;
 		},
 		selectExpense : function(o) {
+			this.expense = o;
 			$scope.expense = o;
 		},
 		selectIncome : function(o) {
+			this.income = o;
 			$scope.income = o;
 		},
 		destroyAsset : function(o) {
@@ -185,7 +206,7 @@ angular.module('myBoardApp').controller('CareerCtrl', function($scope, $rootScop
 					break;
 			}
 		},
-		//Calculate totals for net worth chart -
+		//Calculate totals for net worth chart.
 		calcTotals : function() {
 			var self = this;
 			//Loop all expenses, assets, and income, total up the amount field.
@@ -209,7 +230,7 @@ angular.module('myBoardApp').controller('CareerCtrl', function($scope, $rootScop
 			$scope.Career.chartdata.networth.datasets[0].data = [incomeTotal, expenseTotal, assetTotal];
 
 		},
-		//Build the chart data for asset chart
+		//Build the chart data for asset chart.
 		buildAssetChart : function() {
 			var data = $scope.Career.data.assets;
 			$scope.Career.chartdata.assets = [];
@@ -222,7 +243,7 @@ angular.module('myBoardApp').controller('CareerCtrl', function($scope, $rootScop
 				});
 			});
 		},
-		//Build the chart data for the expenses chart
+		//Build the chart data for the expenses chart.
 		buildExpenseChart : function() {
 			var data = $scope.Career.data.expenses;
 			$scope.Career.chartdata.expenses = [];
@@ -235,12 +256,11 @@ angular.module('myBoardApp').controller('CareerCtrl', function($scope, $rootScop
 				});
 			});
 		},
-		//Build the charts from the data returned
+		//Build the charts from the data returned.
 		buildChart : function(name, data) {
 
 		}
 	};
-
+	//Set on window for debugging purposes.
 	window.Career = $scope.Career;
-	console.log($scope);
 });

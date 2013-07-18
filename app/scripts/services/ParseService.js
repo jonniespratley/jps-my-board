@@ -27,7 +27,7 @@ function($q) {
 								intensity : obj.get('intensity'),
 								user_id : obj.get('user_id'),
 								calories : obj.get('calories'),
-								date : obj.get('date'),
+								date : obj.get('date').toDateString(),
 								amount : obj.get('amount'),
 								color : obj.get('color'),
 								created : obj.createdAt,
@@ -69,6 +69,9 @@ function($q) {
 				delete data.$$hashKey;
 				//console.log(data);
 				//add user to this data object
+				if(data.date){
+					data.date = new Date(data.date);
+				}
 				var ParseObject = Parse.Object.extend(model);
 				var _parseObject = new ParseObject();
 				_parseObject.setACL(new Parse.ACL(Parse.User.current()));
