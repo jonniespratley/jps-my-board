@@ -17,7 +17,6 @@
 		<meta name="apple-mobile-web-app-capable" content="yes"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<!--meta name="apple-itunes-app" content="app-id=APPID"/-->
-
 		<link rel="shortcut icon" href="favicon.ico"/>
 		<link rel="apple-touch-icon" href="images/apple-touch-icon-57-precomposed.png" />
 		<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72-precomposed.png" />
@@ -43,8 +42,7 @@
 					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
 					<a class="brand" href="/">
 					<img src="/images/icon-32.png" alt="My-Board" class="brand-img"/>
-					<span class="brand-txt">My-Board</span>
-					</a>
+					<span class="brand-txt">My-Board</span> </a>
 					<div class="nav-collapse collapse">
 						<ul class="nav hidden-phone" ng-hide="App.currentUser">
 							<li>
@@ -54,7 +52,6 @@
 								<a href="#/about"> About</a>
 							</li>
 						</ul>
-
 						<ul class="nav pull-right" ng-hide="App.currentUser">
 							<li>
 								<a data-toggle="modal" href="#loginModal"> Login</a>
@@ -70,7 +67,6 @@
 							<li>
 								<a href="#" ng-click="App.logout()"><i class="icon-lock"></i> Logout</a>
 							</li>
-
 						</ul>
 					</div>
 				</div>
@@ -86,9 +82,6 @@
 				</p>
 			</footer>
 		</div>
-		
-		
-		
 		<!-- @TODO: [Scripts] -->
 		<script src="components/jquery/jquery.js"></script>
 		<script src="components/jquery-ui/ui/jquery-ui.js"></script>
@@ -102,14 +95,14 @@
 		<script src="http://482d8830b65aad08759c-061ea4bce065674c4dd94b6a107d8d5d.r97.cf1.rackcdn.com/components/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
 		<script src="http://482d8830b65aad08759c-061ea4bce065674c4dd94b6a107d8d5d.r97.cf1.rackcdn.com/components/angular-bootstrap-colorpicker-master/lib/bootstrap-colorpicker.js"></script>
 		<script src="http://482d8830b65aad08759c-061ea4bce065674c4dd94b6a107d8d5d.r97.cf1.rackcdn.com/components/angular-bootstrap-colorpicker-master/js/bootstrap-colorpicker-module.js"></script>
-
 		<script src="components/add2Home.js"></script>
 		<script src="components/jstorage.js"></script>
 		<script src="components/angular-ui/build/angular-ui.min.js"></script>
 		<script src="https://dl.dropboxusercontent.com/u/26906414/cdn/js/Chart.min.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+		<script src="http://482d8830b65aad08759c-061ea4bce065674c4dd94b6a107d8d5d.r97.cf1.rackcdn.com/components/KiiAnalytics.js"></script>
+		<script src="http://482d8830b65aad08759c-061ea4bce065674c4dd94b6a107d8d5d.r97.cf1.rackcdn.com/components/KiiSDK.js"></script>
 		<script src="http://www.parsecdn.com/js/parse-1.2.8.min.js"></script>
-		
 		<!-- build:js scripts/scripts.js -->
 		<script src="scripts/app.js"></script>
 		<script src="scripts/controllers/main.js"></script>
@@ -132,32 +125,33 @@
 		<script src="scripts/services/App.js"></script>
 		<script src="scripts/controllers/profile.js"></script>
 		<!-- endbuild -->
-
 		<div id="fb-root"></div>
 		<script>
-		  // Load the SDK asynchronously
-		  (function(d, s, id){
-		     var js, fjs = d.getElementsByTagName(s)[0];
-		     if (d.getElementById(id)) {return;}
-		     js = d.createElement(s); js.id = id;
-		     js.src = "//connect.facebook.net/en_US/all.js";
-		     fjs.parentNode.insertBefore(js, fjs);
-		   }(document, 'script', 'facebook-jssdk'));
-		</script>
+			// Load the SDK asynchronously
+			( function(d, s, id) {
+				var js, fjs = d.getElementsByTagName(s)[0];
+				if(d.getElementById(id)) {
+					return;
+				}
+				js = d.createElement(s);
+				js.id = id;
+				js.src = "//connect.facebook.net/en_US/all.js";
+				fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
 
-		<script type="text/javascript">
-		var addToHomeConfig = {
-			animationIn: 'bubble',
-			animationOut: 'drop',
-			lifespan:10000,
-			expire:2,
-			touchIcon:true
-		};
 		</script>
-		
+		<script type="text/javascript">
+			var addToHomeConfig = {
+				animationIn : 'bubble',
+				animationOut : 'drop',
+				lifespan : 10000,
+				expire : 2,
+				touchIcon : true
+			};
+
+		</script>
 		<script>
-			var _gaq = [['_setAccount', 'UA-42300995-1'], ['_trackPageview']];
-			( function(d, t) {
+			var _gaq = [['_setAccount', 'UA-42300995-1'], ['_trackPageview']]; ( function(d, t) {
 				var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
 				g.src = ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
 				s.parentNode.insertBefore(g, s)
