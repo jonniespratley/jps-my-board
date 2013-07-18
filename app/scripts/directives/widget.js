@@ -10,9 +10,10 @@ angular.module('myBoardApp')
 	      id: '@',
 	      title: '@',
 	      icon: '@',
-				modal: '@'
+				modal: '@',
+				onClick: '='
 	    },
-			template: '<div id="widget-{{id}}" class="widget"><div class="widget-header"><i class="icon-{{icon}}" ng-show="{{icon}}"></i><h3><span title="Click to toggle" class="title">{{title}} </span><a class="btn btn-mini" ng-show="modal" data-toggle="modal" href="#{{modal}}" ><i class="icon-plus"></i></a></h3></div>'+
+			template: '<div id="widget-{{id}}" class="widget"><div class="widget-header"><i class="icon-{{icon}}" ng-show="{{icon}}"></i><h3><span title="Click to toggle" class="title">{{title}} </span><a class="btn btn-mini" ng-click="onClick" ng-show="modal" data-toggle="modal" href="#{{modal}}" ><i class="icon-plus"></i></a></h3></div>'+
 	              '<div class="widget-content" ng-transclude></div></div>',
 			link: function postLink(scope, element, attrs) {
 	      var widgetTitle = element.find('.widget-header .title'),

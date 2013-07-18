@@ -23,38 +23,33 @@
 				<table class="table table-small table-hover">
 					<thead>
 						<tr>
-
 							<th>Name</th>
 							<th>Amount</th>
 							<th></th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="item in Career.data.income" id="income-{{item.objectId}}">
-							<td>
-								<span class="label" style="background-color: {{item.color}}">&nbsp;</span>
-								<a href="#addIncomeModal" data-toggle="modal" ng-click="Career.selectIncome(item);">{{item.title}}</a> 
-							</td>
+						<tr ng-repeat="item in Career.data.income" id="income-{{item.id}}">
+							<td><span class="label" style="background-color: {{item.color}}">&nbsp;</span> <a href="#addIncomeModal" data-toggle="modal" ng-click="Career.selectIncome(item);">{{item.title}}</a></td>
 							<td>{{item.amount | currency:$}}</td>
-							<td>
-								<button ng-click="Career.destroyIncome(item);" class="btn btn-mini btn-danger"><i class="icon-remove"></i></button>
-							</td>
+							<td class="actions right">
+							<button ng-click="Career.destroyItem( 'Income', item);" class="btn btn-mini btn-danger">
+								<i class="icon-remove"></i>
+							</button></td>
 						</tr>
 					</tbody>
 				</table>
-
 			</widget>
 		</div>
 		<!-- @TODO: [Networth] -->
 		<div class="span8">
 			<widget title="Net Worth Performance">
-				<chartjs id="networthChart" type="bar" 
-					data='{{Career.chartdata.networth}}'
-					ng-model="Career.chartdata.networth" 
-					width="600" height="200">
+				<chartjs id="networthChart" type="bar"
+				data='{{Career.chartdata.networth}}'
+				ng-model="Career.chartdata.networth"
+				width="600" height="200">
 					<img src="http://placehold.it/750x225&amp;text=Line Chart">
 				</chartjs>
-				
 			</widget>
 		</div>
 	</div>
@@ -64,72 +59,73 @@
 			<widget title="Expenses" modal="addExpenseModal">
 				<div id="expenses-row" class="row-fluid">
 					<div class="span6">
-							<table class="table table-small table-hover">
-								<thead>
-									<tr>
-
-										<th>Category</th>
-										<th>Amount</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr ng-repeat="item in Career.data.expenses" id="income-{{item.objectId}}">
-
-										<td><span class="label" style="background-color: {{item.color}}">&nbsp;</span> {{item.title}}</td>
-										<td>{{item.amount | currency:$}}</td>
-									</tr>
-								</tbody>
-							</table>
-						 
+						<table class="table table-small table-hover">
+							<thead>
+								<tr>
+									<th>Category</th>
+									<th>Amount</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="item in Career.data.expenses" id="expense-{{item.id}}">
+									<td><span class="label" style="background-color: {{item.color}}">&nbsp;</span> {{item.title}}</td>
+									<td>{{item.amount | currency:$}}</td>
+									<td class="actions right">
+									<button ng-click="Career.destroyItem( 'Expense', item);" class="btn btn-mini btn-danger">
+										<i class="icon-remove"></i>
+									</button></td>
+								</tr>
+							</tbody>
+						</table>
 					</div>
 					<div class="span6 center">
-							<chartjs id="expensesChart" type="doughnut" 
-								data='{{Career.chartdata.expenses}}'
-								ng-model="Career.chartdata.expenses" width="150" height="150">
-								<img src="http://placehold.it/200x200&amp;text=Radar Chart">
-							</chartjs>
-							
-					</div>	
+						<chartjs id="expensesChart" type="doughnut"
+						data='{{Career.chartdata.expenses}}'
+						ng-model="Career.chartdata.expenses" width="150" height="150">
+							<img src="http://placehold.it/200x200&amp;text=Radar Chart">
+						</chartjs>
+					</div>
 				</div>
-				
-
 			</widget>
 		</div>
 		<!-- @TODO: [Assets] -->
 		<div class="span6">
 			<widget title="Assets" modal="addAssetModal">
-					<div id="assets-row" class="row-fluid">
-						<div class="span6">
-							<table class="table table-small table-hover">
-								<thead>
-									<tr>
-										<th>Name</th>
-										<th>Amount</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr ng-repeat="item in Career.data.assets" id="income-{{item.objectId}}">
-
-										<td><span class="label" style="background-color: {{item.color}}">&nbsp;</span> {{item.title}}</td>
-										<td>{{item.amount | currency:$}}</td>
-									</tr>
-								</tbody>
-							</table>
-						 
-						</div>
-						<div class="span6 center">
-							<chartjs id="assetsChart" type="doughnut" 
-								data='{{Career.chartdata.assets}}'
-								ng-model="Career.chartdata.assets" 
-								width="150" height="150">
-								<img src="http://placehold.it/200x200&amp;text=Radar Chart">
-							</chartjs>							
-						</div>	
+				<div id="assets-row" class="row-fluid">
+					<div class="span6">
+						<table class="table table-small table-hover">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Amount</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="item in Career.data.assets" id="asset-{{item.id}}">
+									<td><span class="label" style="background-color: {{item.color}}">&nbsp;</span> {{item.title}}</td>
+									<td>{{item.amount | currency:$}}</td>
+									<td class="actions right">
+									<button ng-click="Career.destroyItem( 'Asset', item);" class="btn btn-mini btn-danger">
+										<i class="icon-remove"></i>
+									</button></td>
+								</tr>
+							</tbody>
+						</table>
 					</div>
+					<div class="span6 center">
+						<chartjs id="assetsChart" type="doughnut"
+						data='{{Career.chartdata.assets}}'
+						ng-model="Career.chartdata.assets"
+						width="150" height="150">
+							<img src="http://placehold.it/200x200&amp;text=Radar Chart">
+						</chartjs>
+					</div>
+				</div>
 			</widget>
 		</div>
 	</div>
-	
 	<!-- @TODO: [Expense Modal] -->
 	<div class="modal fade hide" id="addExpenseModal">
 		<div class="modal-header">
@@ -164,7 +160,6 @@
 			</button>
 		</div>
 	</div>
-	
 	<!-- @TODO: [Income Modal] -->
 	<div class="modal fade hide" id="addIncomeModal">
 		<div class="modal-header">
@@ -196,7 +191,6 @@
 			</button>
 		</div>
 	</div>
-
 	<!-- @TODO: [Asset Modal] -->
 	<div class="modal fade hide" id="addAssetModal">
 		<div class="modal-header">

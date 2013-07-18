@@ -17,6 +17,7 @@ function($q) {
 						data = results.map(function(obj) {
 							return {
 								id : obj.id,
+								objectId : obj.get('objectId'),
 								title : obj.get('title'),
 								body : obj.get('body'),
 								duration : obj.get('duration'),
@@ -47,29 +48,25 @@ function($q) {
 				});
 				return delay.promise;
 			},
-			destroy : function(model, data, success, error) {
+			destroy : function(model, data, successCb, errorCb) {
 				var ParseObject = Parse.Object.extend(model);
-				var _parseObject = new ParseObject();
-				console.log('destroy', model, data);
-
-				_parseObject.destroy(data, {
+				var _parseObject = new ParseObject(data);
+				_parseObject.destroy({
 					success : function(obj) {
-						console.log(obj);
-						// The object was deleted from the Parse Cloud.
-						if(success) {
-							success(obj);
+						if(successCb) {
+							successCb(obj);
 						}
 					},
 					error : function(myObject, err) {
-						alert(err);
-						// error is a Parse.Error with an error code and description.
-						if(error) {
-							error(err);
+						if(errorCb) {
+							errorCb(err);
 						}
 					}
 				});
 			},
 			add : function(model, data, success, error) {
+				delete data.$$hashKey;
+				//console.log(data);
 				//add user to this data object
 				var ParseObject = Parse.Object.extend(model);
 				var _parseObject = new ParseObject();
@@ -90,6 +87,7 @@ function($q) {
 			save : function(model, data, success, error) {
 				var ParseObject = Parse.Object.extend(model);
 				var _parseObject = new ParseObject();
+				delete data.$$hashKey;
 				_parseObject.setACL(new Parse.ACL(Parse.User.current()));
 				_parseObject.save(data, {
 					success : function(object) {

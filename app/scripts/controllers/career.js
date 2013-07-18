@@ -3,14 +3,11 @@ angular.module('myBoardApp').controller('CareerCtrl', function($scope, $rootScop
 
 	//Income object
 	$scope.income = {
-		id : null,
-		objectId : null,
-		ACL : null,
-		title : null,
-		amount : null,
+		title : '',
+		amount : 0,
 		date : null,
-		category : null,
-		color : null
+		category : '',
+		color : ''
 	};
 
 	//Asset object
@@ -104,15 +101,15 @@ angular.module('myBoardApp').controller('CareerCtrl', function($scope, $rootScop
 		},
 		addIncome : function(o) {
 			console.log(o);
-			ParseService.save('Income', o, function(data) {
+			ParseService.add('Income', o, function(data) {
 				$scope.$apply(function() {
-					$scope.income = {};
+					//$scope.income = {};
 					$scope.Career.getIncome();
 					angular.element('#addIncomeModal').modal('toggle');
 				});
 			}, function(e) {
-				$scope.income = {};
-				alert(e.error);
+				//$scope.income = {};
+				//alert(e.error);
 			});
 		},
 		addExpense : function(o) {
@@ -129,7 +126,7 @@ angular.module('myBoardApp').controller('CareerCtrl', function($scope, $rootScop
 		addAsset : function(o) {
 			ParseService.add('Asset', o, function(data) {
 				$scope.$apply(function() {
-					$scope.Career.chartdata.assets.push(o);
+					//	$scope.Career.chartdata.assets.push(o);
 					$scope.Career.getAssets();
 					angular.element('#addAssetModal').modal('toggle');
 				});
@@ -145,7 +142,6 @@ angular.module('myBoardApp').controller('CareerCtrl', function($scope, $rootScop
 			$scope.expense = o;
 		},
 		selectIncome : function(o) {
-			console.log(o);
 			$scope.income = o;
 		},
 		destroyAsset : function(o) {
@@ -162,13 +158,32 @@ angular.module('myBoardApp').controller('CareerCtrl', function($scope, $rootScop
 				alert(e.error);
 			});
 		},
-		destroyIncome : function(o) {
-			ParseService.destroy('Income', o, function(data) {
-				console.log(data);
-			}, function(e) {
-				alert(e.error);
-			});
-
+		destroyItem : function(model, o) {
+			var c = confirm('Are you sure?');
+			var id = o.id;
+			var el = angular.element('#' + model.toLowerCase() + '-' + id);
+			var self = this;
+			if(c) {
+				ParseService.destroy(model, o, function(data) {
+					el.fadeOut();
+					//self.getData(model);
+				}, function(e) {
+					//alert(e.error);
+				});
+			}
+		},
+		getData : function(model) {
+			switch(model.toLowerCase()) {
+				case 'asset':
+					this.getAssets();
+					break;
+				case 'income':
+					this.getIncome();
+					break;
+				case 'expense':
+					this.getExpense();
+					break;
+			}
 		},
 		//Calculate totals for net worth chart -
 		calcTotals : function() {
