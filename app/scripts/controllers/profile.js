@@ -10,6 +10,7 @@ angular.module('myBoardApp').controller('ProfileCtrl', function ($scope, $rootSc
 		name: App.currentUser.get('name'),
 		calories: App.currentUser.get('calories'),
 		activity: App.currentUser.get('activity'),
-		weight: App.currentUser.get('weight')
+		weight: App.currentUser.get('weight'),
+		avatar:  'http://gravatar.com/avatar/'+ calcMD5(App.currentUser.getEmail()) + '?s=250.png'
 	};
 });
