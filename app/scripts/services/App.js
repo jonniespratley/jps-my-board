@@ -5,6 +5,10 @@ function($rootScope, $location) {
 	var App = {
 		debug : false,
 		currentDate : new Date(),
+		user: {
+			username: 'Guest',
+			password: null
+		},
 		currentUser : Parse.User.current(),
 		nav : [{
 			title : 'My Career',
@@ -32,6 +36,7 @@ function($rootScope, $location) {
 				});
 			};
 			if(this.currentUser) {
+				this.user.username = this.currentUser.getUsername();
 				this.log('Logged in.');
 			} else {
 				this.currentUser = null;
@@ -66,7 +71,7 @@ function($rootScope, $location) {
 		},
 		//Login a user
 		login : function(user) {
-			console.log(user);
+			this.user = user;
 			Parse.User.logIn(user.username, user.password, {
 				success : function(user) {
 					$rootScope.$apply(function() {
@@ -120,17 +125,6 @@ function($rootScope, $location) {
 		}
 	};
 
-	App.user = {
-		username : App.currentUser.get('username'),
-		email : App.currentUser.get('email') ? App.currentUser.get('email') : '',
-		gender : App.currentUser.get('gender'),
-		height : App.currentUser.get('height'),
-		name : App.currentUser.get('name'),
-		calories : App.currentUser.get('calories'),
-		activity : App.currentUser.get('activity'),
-		weight : App.currentUser.get('weight')
-	};
-	App.user.icon = 'http://gravatar.com/avatar/' + calcMD5(App.user.email) + '?s=35.png';
-	App.user.avatar = 'http://gravatar.com/avatar/' + calcMD5(App.user.email) + '?s=250.png'
+	
 	return App;
 }]);
