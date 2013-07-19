@@ -121,17 +121,16 @@ function($rootScope, $location) {
 	};
 
 	App.user = {
-		//username : App.currentUser.getUsername(),
-		email : App.currentUser.getEmail(),
 		username : App.currentUser.get('username'),
+		email : App.currentUser.get('email'),
 		gender : App.currentUser.get('gender'),
 		height : App.currentUser.get('height'),
 		name : App.currentUser.get('name'),
 		calories : App.currentUser.get('calories'),
 		activity : App.currentUser.get('activity'),
 		weight : App.currentUser.get('weight'),
-		icon : 'http://gravatar.com/avatar/' + calcMD5(App.currentUser.getEmail()) + '?s=35.png',
-		avatar : 'http://gravatar.com/avatar/' + calcMD5(App.currentUser.getEmail()) + '?s=250.png'
+		icon : 'http://gravatar.com/avatar/' + calcMD5(App.currentUser.get('email')) + '?s=35.png',
+		avatar : 'http://gravatar.com/avatar/' + calcMD5(App.currentUser.get('email')) + '?s=250.png'
 	};
 	return App;
 }]);
