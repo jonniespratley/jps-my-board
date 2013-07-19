@@ -1,17 +1,19 @@
-<widget title="Your Profile">
 	<div id="profile-row" class="row-fluid">
 		<div class="span7">
-			<form class="form-horizontal" id="profile-form" ng-submit="App.saveUser(user);">
+			<form class="form-horizontal" id="profile-form" ng-submit="saveUser(user)">
+			<widget title="Your Profile">
 				<formitem title="Username:">
-					<input type="text" class="input-block-level" ng-model="user.username"/>
+					<input type="text" class="input-block-level" ng-model="user.username" disabled=""/>
+				</formitem>
+				<formitem title="Display Name:">
+					<input type="text" class="input-block-level" ng-model="user.name"/>
 				</formitem>
 				<formitem title="Email:">
 					<input type="email" class="input-block-level" ng-model="user.email"/>
 				</formitem>
-				<formitem title="Name:">
-					<input type="text" class="input-block-level" ng-model="user.name"/>
-				</formitem>
-				<formitem title="Gender:">
+				</widget>
+				<widget title="Your Health">
+					<formitem title="Gender:">
 					<input type="text" class="input-block-level" ng-model="user.gender"/>
 				</formitem>
 				<formitem title="Height:">
@@ -31,21 +33,36 @@
 				<formitem title="Daily Calories Goal:">
 					<input type="number" class="input-block-level" ng-model="user.calories"/>
 				</formitem>
+				</widget>
+				<widget title="Your Network">
+					<formitem title="Twitter Username:">
+						<input type="text" class="input-block-level" ng-model="user.twitter" ng-change="getKloutId(user.username)"/>
+					</formitem>
+					<formitem title="Facebook Username:">
+						<input type="text" class="input-block-level" ng-model="user.facebook"/>
+					</formitem>
+					<formitem title="Klout ID:">
+						<input type="text" class="input-block-level" ng-model="user.klout"/>
+					</formitem>
+				</widget>
 				<div class="form-actions">
+					<a href="/" class="btn btn-">
+						Cancel
+					</a>
 					<button type="submit" class="btn btn-primary">
-						Update Profile
+						Update
 					</button>
 				</div>
 			</form>
 		</div>
 		<div class="span5">
-			<p class="center">
+			<widget title="Your Avatar">
+				<p class="center">
 				<img src="http://placehold.it/250x250&text=Gravatar" ng-src="{{user.avatar}}" alt="Profile Image" class="img-polaroid"/>
 			</p>
 			<div class="alert alert-info">
 				To change goto <a href="http://gravatar.com" target="_blank">gravatar.com</a>
 			</div>
-			
+			</widget>
 		</div>
 	</div>
-</widget>

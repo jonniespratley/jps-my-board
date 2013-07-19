@@ -5,9 +5,10 @@ function($rootScope, $location) {
 	var App = {
 		debug : false,
 		currentDate : new Date(),
-		user: {
-			username: 'Guest',
-			password: null
+		user : {
+			username : 'demo',
+			password : 'demo',
+			name : 'Guest',
 		},
 		currentUser : Parse.User.current(),
 		nav : [{
@@ -108,16 +109,34 @@ function($rootScope, $location) {
 
 		},
 		//Handle updating a user
-		saveUser : function(u) {
+		saveUser : function(u, success, error) {
 			this.currentUser.set("username", u.username);
 			this.currentUser.set("email", u.email);
 			this.currentUser.set('name', u.name);
+			//health
 			this.currentUser.set("height", u.height);
 			this.currentUser.set('weight', u.weight);
 			this.currentUser.set('activity', Number(u.activity));
 			this.currentUser.set('gender', u.gender);
 			this.currentUser.set('calories', u.calories);
-			this.currentUser.save();
+
+			//network
+			this.currentUser.set('twitter', u.twitter);
+			this.currentUser.set('facebook', u.facebook);
+			this.currentUser.set('klout', u.klout);
+
+			this.currentUser.save(null,{
+				success : function(data) {
+					if(success) {
+						success(data);
+					}
+				},
+				error : function(data) {
+					if(error) {
+						error(data);
+					}
+				}
+			});
 		},
 		//Reset password
 		reset : function(user) {
@@ -125,6 +144,5 @@ function($rootScope, $location) {
 		}
 	};
 
-	
 	return App;
 }]);

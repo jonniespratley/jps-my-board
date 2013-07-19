@@ -217,7 +217,14 @@ module.exports = function(grunt) {
 					dot : true,
 					cwd : '<%= yeoman.app %>',
 					dest : '<%= yeoman.dist %>',
-					src : ['*.{ico,txt}', '.htaccess', 'components/**/*', 'images/{,*/}*.{gif,webp}', 'img/{,*/}*.{gif,webp}', 'styles/fonts/*']
+					src : ['*.{ico,txt}', '.htaccess', 
+					'img/**/*', 
+					'dist/**/*', 
+					'assets/**/*', 
+					'components/**/*', 
+					'images/{,*/}*.{gif,webp}', 
+					'img/{,*/}*.{gif,webp}', 
+					'styles/fonts/*']
 				}, {
 					expand : true,
 					dot : true,
@@ -228,14 +235,23 @@ module.exports = function(grunt) {
 			}
 		},
 		ngtemplates : {
-			myapp : {
+			dist : {
 				options : {
 					base : 'app/views', // $templateCache ID will be relative to this folder
 					prepend : '/views/', // (Optional) Prepend path to $templateCache ID
-					module : 'myBoardAppTemplates'               // (Optional) The module the templates will be added to		                                        //            Defaults to grunt target name (e.g. `myapp`
+					module : 'myBoardApp'               // (Optional) The module the templates will be added to		                                        //            Defaults to grunt target name (e.g. `myapp`
 				},
 				src : 'app/views/**.html',
-				dest : 'dist/templates.js'
+				dest : '<%= yeoman.dist %>/scripts/templates.js'
+			},
+			dev : {
+				options : {
+					base : 'app/views', // $templateCache ID will be relative to this folder
+					prepend : '/views/', // (Optional) Prepend path to $templateCache ID
+					module : 'myBoardApp'               // (Optional) The module the templates will be added to		                                        //            Defaults to grunt target name (e.g. `myapp`
+				},
+				src : 'app/views/**.html',
+				dest : '<%= yeoman.app %>/scripts/templates.js'
 			}
 		}
 	});
