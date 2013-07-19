@@ -814,20 +814,22 @@ angular.module("myBoardApp").run(["$templateCache", function($templateCache) {
   );
 
   $templateCache.put("/views/profile.html",
-    "<widget title=\"Your Profile\">\n" +
     "\t<div id=\"profile-row\" class=\"row-fluid\">\n" +
     "\t\t<div class=\"span7\">\n" +
-    "\t\t\t<form class=\"form-horizontal\" id=\"profile-form\" ng-submit=\"App.saveUser(user);\">\n" +
+    "\t\t\t<form class=\"form-horizontal\" id=\"profile-form\" ng-submit=\"saveUser(user)\">\n" +
+    "\t\t\t<widget title=\"Your Profile\">\n" +
     "\t\t\t\t<formitem title=\"Username:\">\n" +
-    "\t\t\t\t\t<input type=\"text\" class=\"input-block-level\" ng-model=\"user.username\"/>\n" +
+    "\t\t\t\t\t<input type=\"text\" class=\"input-block-level\" ng-model=\"user.username\" disabled=\"\"/>\n" +
+    "\t\t\t\t</formitem>\n" +
+    "\t\t\t\t<formitem title=\"Display Name:\">\n" +
+    "\t\t\t\t\t<input type=\"text\" class=\"input-block-level\" ng-model=\"user.name\"/>\n" +
     "\t\t\t\t</formitem>\n" +
     "\t\t\t\t<formitem title=\"Email:\">\n" +
     "\t\t\t\t\t<input type=\"email\" class=\"input-block-level\" ng-model=\"user.email\"/>\n" +
     "\t\t\t\t</formitem>\n" +
-    "\t\t\t\t<formitem title=\"Name:\">\n" +
-    "\t\t\t\t\t<input type=\"text\" class=\"input-block-level\" ng-model=\"user.name\"/>\n" +
-    "\t\t\t\t</formitem>\n" +
-    "\t\t\t\t<formitem title=\"Gender:\">\n" +
+    "\t\t\t\t</widget>\n" +
+    "\t\t\t\t<widget title=\"Your Health\">\n" +
+    "\t\t\t\t\t<formitem title=\"Gender:\">\n" +
     "\t\t\t\t\t<input type=\"text\" class=\"input-block-level\" ng-model=\"user.gender\"/>\n" +
     "\t\t\t\t</formitem>\n" +
     "\t\t\t\t<formitem title=\"Height:\">\n" +
@@ -847,24 +849,39 @@ angular.module("myBoardApp").run(["$templateCache", function($templateCache) {
     "\t\t\t\t<formitem title=\"Daily Calories Goal:\">\n" +
     "\t\t\t\t\t<input type=\"number\" class=\"input-block-level\" ng-model=\"user.calories\"/>\n" +
     "\t\t\t\t</formitem>\n" +
+    "\t\t\t\t</widget>\n" +
+    "\t\t\t\t<widget title=\"Your Network\">\n" +
+    "\t\t\t\t\t<formitem title=\"Twitter Username:\">\n" +
+    "\t\t\t\t\t\t<input type=\"text\" class=\"input-block-level\" ng-model=\"user.twitter\" ng-change=\"getKloutId(user.username)\"/>\n" +
+    "\t\t\t\t\t</formitem>\n" +
+    "\t\t\t\t\t<formitem title=\"Facebook Username:\">\n" +
+    "\t\t\t\t\t\t<input type=\"text\" class=\"input-block-level\" ng-model=\"user.facebook\"/>\n" +
+    "\t\t\t\t\t</formitem>\n" +
+    "\t\t\t\t\t<formitem title=\"Klout ID:\">\n" +
+    "\t\t\t\t\t\t<input type=\"text\" class=\"input-block-level\" ng-model=\"user.klout\"/>\n" +
+    "\t\t\t\t\t</formitem>\n" +
+    "\t\t\t\t</widget>\n" +
     "\t\t\t\t<div class=\"form-actions\">\n" +
+    "\t\t\t\t\t<a href=\"/\" class=\"btn btn-\">\n" +
+    "\t\t\t\t\t\tCancel\n" +
+    "\t\t\t\t\t</a>\n" +
     "\t\t\t\t\t<button type=\"submit\" class=\"btn btn-primary\">\n" +
-    "\t\t\t\t\t\tUpdate Profile\n" +
+    "\t\t\t\t\t\tUpdate\n" +
     "\t\t\t\t\t</button>\n" +
     "\t\t\t\t</div>\n" +
     "\t\t\t</form>\n" +
     "\t\t</div>\n" +
     "\t\t<div class=\"span5\">\n" +
-    "\t\t\t<p class=\"center\">\n" +
+    "\t\t\t<widget title=\"Your Avatar\">\n" +
+    "\t\t\t\t<p class=\"center\">\n" +
     "\t\t\t\t<img src=\"http://placehold.it/250x250&text=Gravatar\" ng-src=\"{{user.avatar}}\" alt=\"Profile Image\" class=\"img-polaroid\"/>\n" +
     "\t\t\t</p>\n" +
     "\t\t\t<div class=\"alert alert-info\">\n" +
     "\t\t\t\tTo change goto <a href=\"http://gravatar.com\" target=\"_blank\">gravatar.com</a>\n" +
     "\t\t\t</div>\n" +
-    "\t\t\t\n" +
+    "\t\t\t</widget>\n" +
     "\t\t</div>\n" +
-    "\t</div>\n" +
-    "</widget>"
+    "\t</div>\n"
   );
 
   $templateCache.put("/views/signup.html",
