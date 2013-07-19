@@ -248,7 +248,7 @@ module.exports = function(grunt) {
 
 	grunt.registerTask('test', ['clean:server', 'coffee', 'compass', 'connect:test', 'karma']);
 
-	grunt.registerTask('build', ['clean:dist', 'jshint', 'test', 'coffee', 'ngtemplates', 'compass:dist', 'useminPrepare', 'imagemin', 'cssmin', 'htmlmin', 'concat', 'copy', 'cdnify', 'ngmin', 'uglify', 'rev', 'usemin']);
+	grunt.registerTask('build', ['clean:dist', 'jshint', 'test', 'coffee', 'ngtemplates', 'compass:dist', 'useminPrepare', 'cssmin', 'htmlmin', 'concat', 'copy', 'cdnify', 'ngmin', 'uglify', 'rev', 'usemin']);
 	grunt.registerTask('build:q', ['clean:dist', 'ngtemplates', 'coffee', 'compass:dist', 'useminPrepare', 'imagemin', 'cssmin', 'htmlmin', 'concat', 'copy', 'cdnify', 'ngmin', 'uglify', 'rev', 'usemin']);
 
 	grunt.registerTask('default', ['build:q']);
