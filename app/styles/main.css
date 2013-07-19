@@ -15,6 +15,9 @@
 	src: url(../fonts/Chalkboard.ttc); /*if IE */
 	src: local("Chalkboard"), url("../fonts/Chalkboard.ttc") format("truetype");     
 }
+.btn-user .avatar img{
+  height:20px;
+}
 .colorpicker{
 	z-index: 9999;
 }
@@ -421,11 +424,3 @@ footer a {
 	}
 }
 
-/*!
-* Colorpicker for Bootstrap
-*
-* Copyright 2012 Stefan Petre
-* Licensed under the Apache License v2.0
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-*/ 

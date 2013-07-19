@@ -57,17 +57,33 @@
 								<a data-toggle="modal" href="#loginModal"> Login</a>
 							</li>
 						</ul>
-						<ul class="nav pull-right" ng-show="App.currentUser">
-							<li ng-repeat="item in App.nav">
-								<a href="#/{{item.href}}"><i class="icon-{{item.icon}}"></i> {{item.title}}</a>
-							</li>
-							<li>
-								<a href="#/profile"><i class="icon-user"></i> My Profile</a>
-							</li>
-							<li>
-								<a href="#" ng-click="App.logout()"><i class="icon-lock"></i> Logout</a>
-							</li>
-						</ul>
+						<div class="pull-right">
+							<ul class="nav" ng-show="App.currentUser">
+								<li ng-repeat="item in App.nav">
+									<a href="#/{{item.href}}"><i class="icon-{{item.icon}}"></i> {{item.title}}</a>
+								</li>
+								<li class="dropdown">
+									<div class="btn-group btn-user">
+										<a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> 
+											<span class="avatar">
+												<img src="http://www.gravatar.com/avatar/f6112e781842d6a2b4636b35451401ff?s=35&d=mm&r=g" ng-src="{{App.user.icon}}"/>
+											</span> 
+											<span class="username">{{App.user.username}}</span> <span class="caret"></span> </a>
+										<ul class="dropdown-menu">
+											<!-- dropdown menu links -->
+											<li>
+												<a href="#/profile"><i class="icon-user"></i> My Profile</a>
+											</li>
+											<li class="divider"></li>
+											<li>
+												<a href="#" ng-click="App.logout()"><i class="icon-lock"></i> Logout</a>
+											</li>
+										</ul>
+									</div>
+								</li>
+							</ul>
+							
+						</div>
 					</div>
 				</div>
 			</div>
@@ -87,7 +103,6 @@
 		<script src="components/jquery-ui/ui/jquery-ui.js"></script>
 		<script src="components/jquery.colorpicker/jquery.colorpicker.js"></script>
 		<script src="components/angular/angular.js"></script>
-		
 		<script src="components/angular-resource/angular-resource.js"></script>
 		<script src="components/angular-cookies/angular-cookies.js"></script>
 		<script src="components/angular-sanitize/angular-sanitize.js"></script>
@@ -128,8 +143,8 @@
 		<script src="scripts/directives/tabs.js"></script>
 		<script src="scripts/services/App.js"></script>
 		<script src="scripts/controllers/profile.js"></script>
-<script src="scripts/services/KiiService.js"></script>
-<script src="scripts/controllers/oauth.js"></script>
+		<script src="scripts/services/KiiService.js"></script>
+		<script src="scripts/controllers/oauth.js"></script>
 		<!-- endbuild -->
 		<div id="fb-root"></div>
 		<script>
@@ -157,7 +172,8 @@
 
 		</script>
 		<script>
-			var _gaq = [['_setAccount', 'UA-42300995-1'], ['_trackPageview']]; ( function(d, t) {
+			var _gaq = [['_setAccount', 'UA-42300995-1'], ['_trackPageview']];
+			( function(d, t) {
 				var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
 				g.src = ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
 				s.parentNode.insertBefore(g, s)
