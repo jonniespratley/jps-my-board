@@ -53,8 +53,10 @@
 							</li>
 						</ul>
 						<ul class="nav pull-right" ng-hide="App.currentUser">
-							<li>
-								<a data-toggle="modal" href="#loginModal"> Login</a>
+							<li class="">
+								<div class="btn-group">
+									<a data-toggle="modal" href="#loginModal" class="btn"> <i class="icon-lock"></i> Sign In</a>
+								</div>
 							</li>
 						</ul>
 						<div class="pull-right">
@@ -64,11 +66,9 @@
 								</li>
 								<li class="dropdown">
 									<div class="btn-group btn-user">
-										<a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> 
-											<span class="avatar">
-												<img src="http://www.gravatar.com/avatar/f6112e781842d6a2b4636b35451401ff?s=35&d=mm&r=g" ng-src="{{App.user.icon}}"/>
-											</span> 
-											<span class="username">{{App.user.name}}</span> <span class="caret"></span> </a>
+										<a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> <span class="avatar">
+											<img src="http://www.gravatar.com/avatar/f6112e781842d6a2b4636b35451401ff?s=35&d=mm&r=g" ng-src="{{App.user.icon}}"/>
+										</span> <span class="username">{{App.user.name}}</span> <span class="caret"></span> </a>
 										<ul class="dropdown-menu">
 											<!-- dropdown menu links -->
 											<li>
@@ -82,7 +82,6 @@
 									</div>
 								</li>
 							</ul>
-							
 						</div>
 					</div>
 				</div>
@@ -90,7 +89,13 @@
 		</div>
 		<div class="container">
 			<div class="row">
-				<div class="span12" ng-view></div>
+				<div class="span12">
+					<!-- Use an array stack (alert is removed from the stack on close) -->
+					<div class="alerts">
+						<div class="alert fade" ng-repeat="alert in App.alerts" bs-alert="alert"></div>
+					</div>
+					<section ng-view></section>
+				</div>
 			</div>
 			<footer class="clearfix">
 				<p>
@@ -173,8 +178,7 @@
 
 		</script>
 		<script>
-			var _gaq = [['_setAccount', 'UA-42300995-1'], ['_trackPageview']];
-			( function(d, t) {
+			var _gaq = [['_setAccount', 'UA-42300995-1'], ['_trackPageview']]; ( function(d, t) {
 				var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
 				g.src = ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
 				s.parentNode.insertBefore(g, s)

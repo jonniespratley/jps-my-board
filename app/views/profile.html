@@ -36,13 +36,13 @@
 				</widget>
 				<widget title="Your Network">
 					<formitem title="Twitter Username:">
-						<input type="text" class="input-block-level" ng-model="user.twitter" ng-change="getKloutId(user.username)"/>
+						<input type="text" class="input-block-level" ng-model="user.twitter"/>
 					</formitem>
 					<formitem title="Facebook Username:">
 						<input type="text" class="input-block-level" ng-model="user.facebook"/>
 					</formitem>
 					<formitem title="Klout ID:">
-						<input type="text" class="input-block-level" ng-model="user.klout"/>
+						<input type="text" class="input-block-level" ng-model="user.klout" ng-click="getKloutId(user.username)"/>
 					</formitem>
 				</widget>
 				<div class="form-actions">

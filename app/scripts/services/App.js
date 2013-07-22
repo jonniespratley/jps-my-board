@@ -9,6 +9,7 @@ function($rootScope, $location) {
 			username : 'demo',
 			password : 'demo',
 			name : 'Guest',
+			emal : 'jonniespratley@gmail.com'
 		},
 		currentUser : Parse.User.current(),
 		nav : [{
@@ -37,7 +38,7 @@ function($rootScope, $location) {
 				});
 			};
 			if(this.currentUser) {
-				this.user.username = this.currentUser.getUsername();
+				this.initUser();
 				this.log('Logged in.');
 			} else {
 				this.currentUser = null;
@@ -51,6 +52,35 @@ function($rootScope, $location) {
 			if(this.debug) {
 				console.log(obj);
 			}
+		},
+		alerts : [],
+		alert : function(type, title, content) {
+			var a = {
+				"type" : type,
+				"title" : title,
+				"content" : content
+			};
+			$rootScope.$apply(function(){
+				App.alerts.push(a);
+			});
+			return a;
+		},
+		initUser : function() {
+			this.user = angular.extend({
+				username : App.currentUser.get('username'),
+				email : App.currentUser.getEmail() ? this.currentUser.getEmail() : '',
+				gender : App.currentUser.get('gender'),
+				height : App.currentUser.get('height'),
+				name : App.currentUser.get('name'),
+				calories : App.currentUser.get('calories'),
+				activity : App.currentUser.get('activity'),
+				weight : App.currentUser.get('weight'),
+				twitter : App.currentUser.get('twitter'),
+				facebook : App.currentUser.get('facebook'),
+				klout : App.currentUser.get('klout')
+			}, App.user);
+			this.user.icon = 'http://gravatar.com/avatar/' + calcMD5(this.user.email) + '?s=35.png';
+			this.user.avatar = 'http://gravatar.com/avatar/' + calcMD5(this.user.email) + '?s=250.png'
 		},
 		fblogin : function() {
 			Parse.FacebookUtils.logIn(null, {
@@ -125,7 +155,7 @@ function($rootScope, $location) {
 			this.currentUser.set('facebook', u.facebook);
 			this.currentUser.set('klout', u.klout);
 
-			this.currentUser.save(null,{
+			this.currentUser.save(null, {
 				success : function(data) {
 					if(success) {
 						success(data);
