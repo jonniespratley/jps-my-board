@@ -119,10 +119,11 @@ angular.module('myBoardApp').controller('NetworkCtrl', function($scope, $rootSco
 	}
 
 	$scope.Network = {
-		service: NetworkService,
+		service : NetworkService,
 		init : function() {
 			App.init();
 			$scope.buildFriendsChart();
+
 			return this;
 		},
 		getFacebookData : function() {
@@ -130,11 +131,38 @@ angular.module('myBoardApp').controller('NetworkCtrl', function($scope, $rootSco
 		}
 	};
 
+	$scope.influencersChartData = {
+		labels : ["Following", "Friends", "Followers", "Photos"],
+		datasets : [
+		//facebook
+		{
+			fillColor : "rgba(120,138,179,0.5)",
+			strokeColor : "rgba(120,138,179,1)",
+			data : [53, 65, 59, 90]
+		},
+		//Instagram
+		{
+			fillColor : "rgba(216,201,188,0.3)",
+			strokeColor : "rgba(247,26,69,1)",
+			data : [34, 75, 51, 27]
+		},
+		//Twiiter
+		{
+			fillColor : "rgba(73,200,245,0.5)",
+			strokeColor : "rgba(73,200,245,1)",
+			data : [14, 65, 39, 21]
+		}]
+	};
+
 	$scope.init = function() {
 		$scope.Network.init();
 	}
 
 	$scope.init();
+
+	$scope.Network.service.klout.influences.myInfluencees.forEach(function(i) {
+		console.log(i.entity.payload.nick, i.entity.payload.score.score);
+	});
 
 	window.Network = $scope.Network;
 });

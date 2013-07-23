@@ -1,69 +1,89 @@
-
-
-
-  <ol class="breadcrumb">
-    <li>
-      <a href="#">Home</a>
-      <span class="divider">/</span> 
-    </li>
-    <li class="active">My Network</li>
-  </ol>
-  <div class="row-fluid main-features">
-    <div class="span2 hidden-phone">
-      <widget title="Networks">
-		<ul class="nav nav-list">
-			<li class="nav-header">
-				Connected
-			</li>
-	        <li>
-	          <a href="#"><i class="icon-twitter-sign"></i> Twitter</a> 
-	        </li>
-	        <li>
-	          <a href="#"><i class="icon-instagram"></i> Instagram</a> 
-	        </li>
-			<li>
-	          <a href="#"><i class="icon-facebook-sign"></i> Facebook</a> 
-	        </li>
-			<li class="nav-header">
-				Not-Connected
-			</li>
-	        <li>
-	          <a href="#"><i class="icon-foursquare"></i> Foursquare</a> 
-	        </li>
-	      </ul>
-	</widget>
-    </div>
-    <div class="span10">
+<ol class="breadcrumb">
+	<li>
+		<a href="#">Home</a>
+		<span class="divider">/</span>
+	</li>
+	<li class="active">
+		My Network
+	</li>
+</ol>
+<div class="row-fluid main-features">
+	<div class="span2 hidden-phone">
+		<widget title="Networks">
+			<ul class="nav nav-list">
+				<li class="nav-header">
+					Connected
+				</li>
+				<li>
+					<a href="#"><i class="icon-twitter-sign"></i> Twitter</a>
+				</li>
+				<li>
+					<a href="#"><i class="icon-instagram"></i> Instagram</a>
+				</li>
+				<li>
+					<a href="#"><i class="icon-facebook-sign"></i> Facebook</a>
+				</li>
+				<li class="nav-header">
+					Not-Connected
+				</li>
+				<li>
+					<a href="#"><i class="icon-foursquare"></i> Foursquare</a>
+				</li>
+			</ul>
+		</widget>
+	</div>
+	<div class="span10">
 		<widget title="Social Analysis">
-			<chartjs id="activityChart" data='{{activityChartData}}' ng-model="activityChartData" type="bar" width="750" height="185">My Activity</chartjs>
-	        <img src="http://placehold.it/750x185&amp;text=Line Chart" class="hidden">
+			<chartjs id="activityChart" data='{{activityChartData}}' ng-model="activityChartData" type="bar" width="750" height="185">
+				My Activity
+			</chartjs>
+			<img src="http://placehold.it/750x185&amp;text=Line Chart" class="hidden">
 		</widget>
-    </div>
-  </div>
-  <div class="row-fluid sub-features">
-    <div class="span6">
-		<widget title="Friends">
+		
+	</div>
+</div>
+
+
+<div class="row-fluid sub-features">
+	<div class="span6">
+		<widget title="My Influencees">
 			<div class="center box">
-	        <img src="http://placehold.it/200x200&amp;text=Doughnut Chart" class="hidden">
-			<chartjs id="friendsChart" data='{{friendsChartData}}' ng-model="friendsChartData" type="polar" width="200" height="200">My Friends</chartjs>
-			<ul class="inline small hidden-">
-	          <li ng-repeat="item in friendsChartData">
-	          <i class="icon-{{item.label.toLowerCase()}}"></i>	{{item.label}}: <span class="label" style="background-color: {{item.color}};">{{item.value}}</span>
-	          </li>
-	        </ul>
-	      </div>
+				<img src="http://placehold.it/200x200&amp;text=Doughnut Chart" class="hidden">
+				<chartjs id="friendsChart" data='{{friendsChartData}}' ng-model="friendsChartData" type="polar" width="200" height="200">
+					My Friends
+				</chartjs>
+				<ul class="inline small hidden-">
+					<li ng-repeat="item in friendsChartData">
+						<i class="icon-{{item.label.toLowerCase()}}"></i> {{item.label}}: <span class="label" style="background-color: {{item.color}};">{{item.value}}</span>
+					</li>
+				</ul>
+			</div>
 		</widget>
-
-    </div>
-    <div class="span6">
-		<widget title="Trends">
-			
+	</div>
+	<div class="span6">
+		<widget title="My Influencers">
 			<div class="box center">
-	        <img src="http://placehold.it/200x200&amp;text=Radar Chart" class="hidden">
-			<chartjs id="trendsChart" data='{{trendsChartData}}' ng-model="trendsChartData" type="line" width="400" height="200">My Trends</chartjs>
-
-	      </div>
-	      
+				<img src="http://placehold.it/200x200&amp;text=Radar Chart" class="hidden">
+				<chartjs id="trendsChart" data='{{influencersChartData}}' ng-model="influencersChartData" type="bar" width="400" height="200">
+					My Trends
+				</chartjs>
+			</div>
 		</widget>
-    </div>
-  </div>
+	</div>
+</div>
+
+<div class="row-fluid">
+	<div class="span12">
+		<widget title="Topics">
+			<ul class="thumbnails topics">
+				<li class="span2 topic" ng-repeat="topic in Network.service.klout.topics">
+					<a ng-href="https://twitter.com/search?q={{topic.slug}}" class="thumbnail" target="_blank" rel="alternate">
+						<h4>{{topic.displayName}}</h4>
+						<img ng-src="{{topic.imageUrl}}"/>
+					</a>
+				</li>
+			</ul>
+			
+		</widget>
+	</div>
+</div>
